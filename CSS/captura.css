@@ -1,0 +1,123 @@
+.semanas {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+}
+
+.btnSemanas {
+      width: 150px;
+      height: 30px;
+      background-color: white;
+      border: 1px solid black;
+}
+
+.fecha {
+      margin: 15px;
+      text-align: center;
+}
+
+.Inputs {
+      width: 200px;
+      height: 30px;
+}
+
+button.Inputs {
+      width: 150px;
+      height: 30px;
+      background-color: white;
+      border: 1px solid black;
+      margin-left: 20px;
+}
+
+
+.divisor {
+      border-top: 1px solid gray;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+}
+
+.capturaCodigo {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+}
+
+.divRegistro {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      border-top: 1px solid gray;
+      margin-top: 20px;
+      padding-top: 20px;
+}
+
+.divHoras {
+      width: 150px;
+      height: 115px;
+      border: 1px solid black;
+      text-align: center;
+}
+
+.divInformacion {
+      width: 40%;
+      height: 115px;
+      font-size: 14px;
+      border: 1px solid black;
+      text-align: center;
+}
+
+.btnGuardar {
+      width: 150px;
+      height: 80px;
+      background-color: white;
+}
+
+.campo2{
+      width: 250px;
+}
+
+@media(max-width:1024px) {
+
+      .btnSemanas {
+            width: 80px;
+            height: 50px;
+            font-size: 0.8rem;
+            background-color: white;
+            border: 1px solid black;
+      }
+
+      .divisor1{
+            flex-direction: column;
+      }
+      button.Inputs {
+            width: 100%;
+            margin:  15px 0;
+            
+
+      }
+      .capturaCodigo {
+            display: flex;
+            flex-direction: column;
+      }
+      
+
+      .Inputs {
+            width: 100%;
+      }
+
+
+      .divRegistro {
+            flex-direction: column;
+            align-items: center;
+      }
+
+      .divInformacion {
+            width: 100%;
+            margin-bottom: 15px;
+            margin-top: 15px;
+      }
+
+}

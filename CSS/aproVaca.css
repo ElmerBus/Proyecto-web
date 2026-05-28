@@ -1,0 +1,33 @@
+
+/*DISEÑO DE COLUMNAS ESTADO Y ACCIONES*/
+.diseño-estado {
+    /*da diseño a los cuadritos de la columna estado*/
+    padding: 5px 15px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.menu-acciones {
+    /*diseño del menu desplegable de la columna acciones*/
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #000;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+@media (max-width: 1024px) {
+      .tarjeta {
+            width: 100%;
+            min-height: 400px;
+            margin-bottom: 2%;
+      }
+
+      .contenedor {
+            flex-direction: column;
+      }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+      <title>Restablecer contraseña</title>
+      <link rel="stylesheet" href="../CSS/restablecer.css">
+      <script src="../JS/utilidad.js"></script>
+</head>
+
+<body>
+
+      <div class="contenedor">
+            <h1>Restablecer contraseña</h1>
+
+            <div class="groupo">
+                  <label>Nueva contraseña</label>
+                  <div class="campo">
+                        <input id="newPass" type="password"> <!--//checar el on input-->
+                        <button class="toggle" id="vizualizar2">👁</button>
+                        <!--//"" "" onclick cambiar class-->
+                  </div>
+            </div>
+
+            <div class="fortaleza" id="strengthText">Fortaleza: -</div> <!--cambiar el nom del id-->
+
+            <div class="requerimientos">
+                  <p id="req1">• Mínimo 12 caracteres</p>
+                  <p id="req2">• Incluye mayúsculas y minúsculas</p>
+                  <p id="req3">• Incluye al menos 3 números</p>
+                  <p id="req4">• Incluye al menos 3 caracteres especiales</p>
+                  <p id="req5">• No permite secuenciales</p>
+                  <p id="req6">• No incluye nombre de usuario</p>
+                  <p id="req7">• No reutiliza últimas 3 contraseñas</p>
+            </div>
+
+            <div class="grupo">
+                  <label>Confirmar contraseña</label>
+                  <div class="campo">
+                        <input id="confirmPass" type="password" oninput="validatePassword()">
+                        <!--//cambiar nom id revisar oninput-->
+                        <button class="toggle" onclick="verContrasena(document.getElementById('confirmPass'))">👁</button> <!--//cambiar class-->
+                  </div>
+                  <p class="error-text" id="matchError">Las contraseñas no coinciden</p>
+            </div>
+
+            <button id="updateBtn" class="main-btn" disabled onclick="updatePassword()">
+                  Actualizar contraseña
+            </button>
+      </div>
+</body>
+<script src="../JS/restablecer.js"></script>
+</html>

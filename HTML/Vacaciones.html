@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Vacaciones</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/vacaciones.css">
+    <link rel="stylesheet" href="../CSS/estiloBarra.css">
+
+
+
+</head>
+
+<body>
+
+    <div class="barra">
+        <div class="ladoizquierdo">
+            <div class="tipoUsuario">
+                <h1>Empleado<h1>
+            </div>
+
+            <button class="boton1" id="btnMenu">
+                ☰ Empleado
+            </button>
+            
+            <div class="grupo">
+                <a href="../HTML/Captura.html" class="botones">Registro de horas</a>
+                <a href="../HTML/Vacaciones.html" class="botones">Vacaciones</a>
+            </div>
+        </div>
+
+        <div class="ladoizquierdo">
+            <a href="../HTML/Perfil.html">
+                <div class="nombre">
+                    <h3>Fernando Lopez<h3>
+                </div>
+            </a>
+            <a href="../HTML/Perfil.html">
+                <div class="foto">
+                    <h1>👤<h1>
+                </div>
+            </a>
+            <a href="../HTML/Login.html">
+                <div class="botones">Cerrar Sesion</div>
+            </a>
+        </div>
+    </div>
+    <div class="menuMovil" id="menuMovil">
+
+        <a href="../HTML/Captura.html">
+            <div class="opcionMenu">
+                Registro de horas
+            </div>
+        </a>
+
+        <a href="..//HTML/Vacaciones.html">
+            <div class="opcionMenu">
+                Vacaciones
+            </div>
+        </a>
+
+        <a href="../HTML/Perfil.html">
+            <div class="opcionMenu">
+                Perfil
+            </div>
+        </a>
+
+        <a href="../HTML/Login.html">
+            <div class="opcionMenu">
+                Cerrar Sesion
+            </div>
+        </a>
+
+    </div>
+
+    <div class="contenedor">
+        <div class="tarjeta">
+            <div class="titulo">
+                <div class="icono">📅</div>
+                <h2>Solicitud de Vacaciones</h2>
+            </div>
+            <div class="textoDes">
+                Solicita tus vacaciones.
+            </div>
+            <div class="formulario">
+                <div class="formDes">
+                    Nueva solicitud
+                </div>
+                <div class="datos">
+                    <div class="campo">
+                        <label>Fecha de inicio</label>
+                        <input type="date" id="fechaInicio" placeholder="dd/mm/aaaa">
+                    </div>
+                    <div class="campo">
+                        <label>Fecha final</label>
+                        <input type="date" id="fechaFinal" placeholder="dd/mm/aaaa">
+                    </div>
+                    <div class="campo">
+                        <label>Motivo (opcional)</label>
+                        <textarea id="motivo"></textarea>
+                    </div>
+                </div>
+                <button class="boton">
+                    ✈️ Enviar solicitud
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+    <script src="../JS/menus.js"></script>
+    <script src="../JS/utilidad.js"></script>
+</html>

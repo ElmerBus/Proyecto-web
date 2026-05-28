@@ -1,0 +1,126 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'DM Sans', sans-serif;
+}
+
+body {
+      background-color: #A550BB;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.contenedor {
+      background-color: white;
+      width: 400px;
+      padding: 35px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .15);
+}
+
+h1 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: black;
+}
+
+.grupo {
+      margin-bottom: 18px;
+}
+
+label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 500;
+}
+
+.campo {
+      position: relative;
+}
+
+input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: 1.5px solid #d0d0dc;
+      background-color: white;
+      font-size: 14px;
+      outline: none;
+}
+
+input:focus {
+      border: 2px solid #8e0eae;
+}
+
+.error {
+      border-color: #d32f2f !important;
+}
+
+.success {
+      border-color: #16a34a !important;
+}
+
+.ok {
+      color: #16a34a !important;
+}
+
+.toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: none;
+      cursor: pointer;
+}
+
+.error-text {
+      font-size: 12px;
+      color: #d32f2f;
+      margin-top: 5px;
+      display: none;
+}
+
+.requerimientos {
+      border: 1px solid #d0d0dc;
+      padding: 12px;
+      margin-bottom: 20px;
+      background: #fafafa;
+}
+
+.requerimientos p {
+      font-size: 13px;
+      margin-bottom: 7px;
+      color: gray;
+}
+
+
+
+.fortaleza {
+      margin: 12px 0;
+      font-size: 13px;
+      font-weight: 700;
+}
+
+button.main-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      background: #d1d5db;
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: not-allowed;
+}
+
+button.main-btn.active {
+      background: green;
+      cursor: pointer;
+}
+
+button.main-btn.active:hover {
+      opacity: .9;
+}

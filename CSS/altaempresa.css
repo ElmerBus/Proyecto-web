@@ -1,0 +1,38 @@
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.tarjeta{
+      width: 25%;
+}
+.tarjeta2{
+      width: 72%;
+      background-color: white;
+      min-height: 245px;
+      border: 1px solid gray;
+      padding: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .15);
+}
+.datos {
+    display: flex;
+    flex-direction: column;
+}
+
+@media(max-width:1024px) {
+      .tarjeta {
+            width: 100%;
+            min-height: 400px;
+            margin-bottom: 2%;
+      }
+      .tarjeta2 {
+            width: 100%;
+            min-height: 400px;
+            margin-bottom: 2%;
+      }
+      .contenedor {
+            flex-direction: column;
+      }
+      
+      
+}

@@ -1,0 +1,31 @@
+textarea {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: 1.5 px solid #d0d0dc;
+      background-color: white;
+      font-size: 14px;
+      outline: none;
+}
+textarea:focus {
+      border: 2px solid #8e0eae;
+}
+@media(max-width:1024px) {
+
+      .grupo {
+            margin-left: 0;
+            margin-top: 10px;
+      }
+
+      .datos {
+            flex-direction: column;
+      }
+
+      .texto {
+            margin-left: 0;
+      }
+
+      .boton {
+            width: 100%;
+      }
+
+}

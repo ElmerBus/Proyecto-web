@@ -1,0 +1,46 @@
+body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #a550bb;
+      color: white;
+      text-align: center;
+      padding: 50px;
+}
+
+.contenedor {
+      color: black;
+      background-color: white;
+      padding: 2rem;
+      display: inline-block;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .15);
+}
+
+h1 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 5px;
+      color: black;
+}
+
+.codigo input {
+      border: 1.5px solid #d0d0dc;
+      background-color: #f7f7fb;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      font-size: 20px;
+      margin: 5px;
+}
+
+button {
+      background-color: green;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      margin-top: 15px;
+      cursor: pointer;
+}
+
+button:disabled {
+      background-color: gray;
+      cursor: not-allowed;
+}

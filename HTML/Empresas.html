@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alta Empresa</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../CSS/estiloBarra.css">
+    <link rel="stylesheet" href="../CSS/altaempresa.css">
+
+</head>
+
+<body>
+    <div class="barra">
+        <div class="ladoizquierdo">
+            <div class="tipoUsuario">
+                <h1>Administrador</h1>
+            </div>
+
+            <button class="boton1" id="btnMenu">
+                ☰ Administrador
+            </button>
+
+            <div class="grupo">
+                <div class="menu">
+                    <div class="botones" id="menu">Usuarios</div>
+
+                    <div class="submenu">
+                        <a href="../HTML/Empleados_agregar.html">Agregar usuario</a>
+                        <a href="../HTML/Empleados.html">Lista usuarios</a>
+                    </div>
+
+                </div>
+
+                <a href="../HTML/Empresas.html" class="botones">Empresas</a>
+                <a href="../HTML/AprobarVacaciones.html" class="botones"> Aprobar Vacaciones</a>
+                <a href="../HTML/EditarHorasAdmin.html" class="botones">Control de asistencia</a>
+            </div>
+        </div>
+
+        <div class="ladoizquierdo">
+            <div class="nombre">
+                <h3>Fernando Lopez</h3>
+            </div>
+            <div class="foto">
+                <h1>👤</h1>
+            </div>
+            <a href="../HTML/Login.html" class="botones">Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <div class="menuMovil" id="menuMovil">
+
+        <div class="opcionMenu" id="opcionMenu">
+            Usuarios ▼
+        </div>
+
+        <div class="submenuMovil" id="submenuUsuarios">
+            <a href="../HTML/Empleados_agregar.html">
+                <div class="subOpcion">Agregar usuario</div>
+            </a>
+
+            <a href="../HTML/Empleados.html">
+                <div class="subOpcion">Lista usuarios</div>
+            </a>
+        </div>
+
+
+
+        <a href="../HTML/Empresas.html">
+            <div class="opcionMenu">
+                Empresas
+            </div>
+        </a>
+
+        <a href="../HTML/AprobarVacaciones.html">
+            <div class="opcionMenu">
+                Aprobar vacaciones
+            </div>
+        </a>
+        <a href="../HTML/EditarHorasAdmin.html">
+            <div class="opcionMenu">
+                Control de asistencia
+            </div>
+        </a>
+        <a href="../HTML/Login.html">
+            <div class="opcionMenu">
+                Cerrar Sesión
+            </div>
+        </a>
+
+    </div>
+
+    <div class="contenedor">
+        <div class="tarjeta">
+            <div class="titulo">
+                <div class="icono">🏢</div>
+                <h2>Nueva empresa</h2>
+            </div>
+            <div class="textoDes">
+                Registra nuevas empresas en el sistema.
+            </div>
+            <div class="formulario">
+                <div class="formDes">
+
+                </div>
+                <div class="datos">
+                    <div class="campo">
+                        <label>Nombre</label>
+                        <input type="text" id="nomEmpresa" placeholder="Nombre de la empresa" />
+                    </div>
+                    <div class="campo2">
+                        <label for="cobrable">Cobrable
+                            <input type="radio" id="cobrable" name="cobro" value="Cobrable" />
+                        </label>
+                        <label for="noCobrable">NO Cobrable
+                            <input type="radio" id="noCobrable" name="cobro" value="NoCobrable" />
+                        </label>
+                        <label for="ambas">Ambas
+                            <input type="radio" id="ambas" name="cobro" checked value="Ambos" />
+                        </label>
+                    </div>
+                    <div class="campo">
+                        <button id="btn_guardar" class="btnRegistrar" disabled>
+                            Guardar Empresa
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tarjeta2">
+            <div class="titulo">
+                <div class="icono">📋</div>
+                <h2>Empresas registradas</h2>
+            </div>
+            <div class="textoDes">
+                Consulta y administra las empresas registradas
+            </div>
+            <div class="formulario">
+                <div class="seccion-filtros">
+                    <div class="opciones-filtrado">
+                        <label>Buscar por nombre</label>
+                        <input type="text" id="buscarNombre" placeholder="Buscar empleado...">
+                    </div>
+                    <div class="opciones-filtrado">
+                        <label>Buscar por codigo</label>
+                        <input type="text" id="buscarCodigo" placeholder="Buscar codigo...">
+                    </div>
+                    <div class="opciones-filtrado">
+                        <label>Filtrar por estado</label>
+                        <select id="filtroEstados">
+                            <option value="Todos">Todos</option>
+                            <option value="Activas">Activas</option>
+                            <option value="Pausadas">Pausadas</option>
+                        </select>
+                    </div>
+                    <button class="boton-limpiar" id="botonLimpiar">Limpiar</button>
+                </div>
+                <div class="contenido-tabla">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre Empresa</th>
+                                <th>Código Cobrable</th>
+                                <th>Código No Cobrable</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyTablaDinamica"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../JS/menus.js"></script>
+<script src="../JS/empresa.js"></script>
+
+</html>

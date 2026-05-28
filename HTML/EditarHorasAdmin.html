@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Editar Horas - Administrador</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <link rel="stylesheet" href="../CSS/estiloBarra.css">
+    <link rel="stylesheet" href="../CSS/captura.css">
+
+
+</head>
+
+<body>
+    <div class="barra">
+        <div class="ladoizquierdo">
+            <div class="tipoUsuario">
+                <h1>Administrador</h1>
+            </div>
+
+            <button class="boton1" id="btnMenu">
+                ☰ Administrador
+            </button>
+
+            <div class="grupo">
+                <div class="menu">
+                    <div class="botones" id="menu">Usuarios</div>
+
+                    <div class="submenu">
+                        <a href="../HTML/Empleados_agregar.html">Agregar usuario</a>
+                        <a href="../HTML/Empleados.html">Lista usuarios</a>
+                    </div>
+
+                </div>
+
+                <a href="../HTML/Empresas.html" class="botones">Empresas</a>
+                <a href="../HTML/AprobarVacaciones.html" class="botones"> Aprobar Vacaciones</a>
+                <a href="../HTML/EditarHorasAdmin.html" class="botones">Control de asistencia</a>
+            </div>
+        </div>
+
+        <div class="ladoizquierdo">
+            <div class="nombre">
+                <h3>Fernando Lopez</h3>
+            </div>
+            <div class="foto">
+                <h1>👤</h1>
+            </div>
+            <a href="../HTML/Login.html" class="botones">Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <div class="menuMovil" id="menuMovil">
+
+        <div class="opcionMenu" id="opcionMenu">
+            Usuarios ▼
+        </div>
+
+        <div class="submenuMovil" id="submenuUsuarios">
+            <a href="../HTML/Empleados_agregar.html">
+                <div class="subOpcion">Agregar usuario</div>
+            </a>
+
+            <a href="../HTML/Empleados.html">
+                <div class="subOpcion">Lista usuarios</div>
+            </a>
+        </div>
+
+
+
+        <a href="../HTML/Empresas.html">
+            <div class="opcionMenu">
+                Empresas
+            </div>
+        </a>
+
+        <a href="../HTML/AprobarVacaciones.html">
+            <div class="opcionMenu">
+                Aprobar vacaciones
+            </div>
+        </a>
+        <a href="../HTML/EditarHorasAdmin.html">
+            <div class="opcionMenu">
+                Control de asistencia
+            </div>
+        </a>
+        <a href="../HTML/Login.html">
+            <div class="opcionMenu">
+                Cerrar Sesión
+            </div>
+        </a>
+
+    </div>
+
+    <div class="contenedor">
+        <div class="tarjeta">
+            <div class="titulo">
+                <div class="icono">🕒</div>
+                <h2>Consulta de horas</h2>
+            </div>
+            <div class="textoDes">
+                Consulta de horas trabajadas
+            </div>
+            <div class="formulario">
+                <div class="formDes">
+                    Semana
+                </div>
+                <div class="semanas">
+                    <div class="semana"><button class="btnSemanas">🡸 Semana pasada</button></div>
+                    <div class="semana"><button class="btnSemanas">⌛ Semana actual</button></div>
+                    <div class="semana"><button class="btnSemanas">Semana siguiente 🡺</button></div>
+                </div>
+                <div class="fecha">
+                    <p>La actual semana es de [fecha inicio] a [fecha fin]</p>
+                </div>
+                <div class="divisor">
+
+                    <div class="campo2">
+                        <label>Núm de reloj:</label>
+                        <input id="txtNumReloj" class="Inputs" type="number" placeholder="Ej: 000123456" maxlength="9">
+                        <button class="Inputs" id="btnBuscar">🔍 Buscar empleado</button>
+                    </div>
+
+                    <div class="campo2">
+                        <label>Empleado:</label>
+                        <input id="txtNom" class="Inputs" type="text" readonly>
+                    </div>
+                    <div class="capturaCodigo">
+                        <div class="campo2">
+                            <label>Codigo:</label>
+                            <input id="txtCodigo" class="Inputs" ,type="text" placeholder="Ingresa código ej: L/M123">
+                            <button class="Inputs" id="btnAgregar">Añadir registro</button>
+                        </div>
+
+                    </div>
+                </div>
+                <h4>Registros ingresados</h4>
+                <div class="contenido-tabla">
+                    
+                    <table>
+                        <thead>
+                            <tr id="filaEncabezado">
+                                <th>Codigo</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                                <th>Sábado</th>
+                                <th>Domingo</th>
+                                <th>Total</th>
+                                <th>Accion</th>
+                            </tr>
+                        <tbody class="bodyTablaDinamica">
+                            <tr id="filaVacia">
+                                <td colspan="10" class="celdas">Sin registros</td>
+                            </tr>
+                        </tbody>
+                        </thead>
+                    </table>
+
+
+                </div>
+                <div class="divRegistro">
+                    <div class="divHoras">
+                        <p>Total de horas registradas:</p>
+                        <h4 id="totalHoras">0</h4>
+                    </div>
+
+                    <div class="divInformacion">
+                        <h4>Información adicional</h4>
+                        <p>Los códigos se dividen en horas cobrables y no cobrables.
+                            Ejemplo de código cobrable: L123.
+                            Ejemplo de código no cobrable: M123.
+                            Las horas por dia sin importar el codigo no deben exceder las 24 horas
+                        </p>
+                    </div>
+
+                    <button class="btnGuardar">Guardar Registros</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+<script src="../JS/menus.js"></script>
+
+
+</html>

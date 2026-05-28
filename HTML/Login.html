@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      <title>Iniciar Sesión</title>
+      <link rel="stylesheet" href="../CSS/login.css">
+
+</head>
+
+<body>
+
+      <div class="contenedor">
+            <h1>Iniciar sesión</h1>
+
+            <div class="grupo">
+                  <label>Número de empleado o correo electrónico</label>
+
+                  <div class="campo">
+                        <input id="empleado" type="text">
+                  </div>
+
+            </div>
+
+            <div class="grupo">
+                  <label>Contraseña</label>
+
+                  <div class="campo">
+                        <input id="password" autocomplete="new-password" type="password" placeholder="••••••••">
+                        <button type="button" class="btn-ver" id="btn-ver">👁</button>
+                  </div>
+            </div>
+
+            <div class="contRecuperacion">
+                  <a href="PantallaOTP.html" class="link" id="link"
+                        onclick="return validarCampo(document.getElementById('empleado'))">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button type="button" class="btn-login" id="btn-login" >Iniciar
+                  sesión</button>
+      </div>
+
+</body>
+      <script src="../JS/login.js"></script>
+</html>
