@@ -29,7 +29,7 @@ const btnMenu = document.getElementById('btnMenu')
 const opcionMenu = document.getElementById('opcionMenu')
 
 
-if(btnMenu!==null){
+if (btnMenu !== null) {
       btnMenu.addEventListener('click', activarMenu)
 }
 
@@ -82,3 +82,33 @@ async function nombre() {
 }
 
 */
+const salir=document.getElementById('logout')
+const salir1=document.getElementById('logout1')
+
+salir1.addEventListener('click',logout)
+salir.addEventListener('click',logout)
+
+async function logout() {
+      try {
+            const token = sessionStorage.getItem('token')
+            
+            const respuesta = await fetch(`https://localhost:7293/api/LogIn/logout`, {
+
+                  method: "POST",
+                  headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                  },
+            })
+
+            if (respuesta.status == 200) {
+                  sessionStorage.removeItem('token')
+                  sessionStorage.removeItem('nUsu')
+                  window.location.href="../HTML/login.html"
+            } else {
+                  return false
+            }
+      } catch {
+            console.log("ERROR CON LA APasIS")
+      }
+}

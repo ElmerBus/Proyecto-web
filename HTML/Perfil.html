@@ -25,7 +25,7 @@
             <button class="boton1" id="btnMenu">
                 ☰ Empleado
             </button>
-            
+
             <div class="grupo">
                 <a href="../HTML/Captura.html" class="botones">Registro de horas</a>
                 <a href="../HTML/Vacaciones.html" class="botones">Vacaciones</a>
@@ -43,9 +43,7 @@
                     <h1>👤<h1>
                 </div>
             </a>
-            <a href="../HTML/Login.html">
-                <div class="botones">Cerrar Sesion</div>
-            </a>
+            <p class="botones" id="logout">Cerrar Sesión</p>
         </div>
     </div>
     <div class="menuMovil" id="menuMovil">
@@ -68,11 +66,11 @@
             </div>
         </a>
 
-        <a href="../HTML/Login.html">
-            <div class="opcionMenu">
-                Cerrar Sesion
-            </div>
-        </a>
+        <p>
+        <div class="opcionMenu" id="logout1">
+            Cerrar Sesión
+        </div>
+        </p>
 
     </div>
 
@@ -125,9 +123,9 @@
                     <div class="campo">
                         <label>Contraseña actual</label>
                         <div class="subcampo">
-                            <input id="actualContrasena" type="password"> 
+                            <input id="actualContrasena" type="password">
                             <button type="button" class="toggle" id="vizualizar1">👁</button>
-                            
+
                         </div>
 
                     </div>
@@ -137,11 +135,11 @@
                             <input id="newPass" type="password">
 
                             <button type="button" class="toggle" id="vizualizar2">👁</button>
-                            
+
                         </div>
 
                     </div>
-                    <div class="formDes" id="strengthText">Fortaleza: -</div> 
+                    <div class="formDes" id="strengthText">Fortaleza: -</div>
 
                     <div class="requerimientos">
                         <p id="req1">• Mínimo 12 caracteres</p>
@@ -157,12 +155,12 @@
                         <div class="subcampo">
                             <input id="confirmPass" type="password">
                             <button type="button" class="toggle" id="vizualizar3">👁</button>
-                            
+
                         </div>
 
                         <p class="error-text" id="matchError">Las contraseñas no coinciden</p>
                     </div>
-                    <button id="updateBtn" class="main-btn" disabled >
+                    <button id="updateBtn" class="main-btn" disabled>
                         Actualizar contraseña
                     </button>
                 </div>
