@@ -124,7 +124,7 @@
                         </label>
                     </div>
                     <div class="campo">
-                        <button id="btn_guardar" class="btnRegistrar" disabled>
+                        <button type="button" id="btn_guardar" class="btnRegistrar" disabled>
                             Guardar Empresa
                         </button>
                     </div>
@@ -150,7 +150,8 @@
                         <label>Buscar por codigo</label>
                         <input type="text" id="buscarCodigo" placeholder="Buscar codigo...">
                     </div>
-                    <div class="opciones-filtrado">
+                    <!--
+                        <div class="opciones-filtrado">
                         <label>Filtrar por estado</label>
                         <select id="filtroEstados">
                             <option value="Todos">Todos</option>
@@ -158,16 +159,18 @@
                             <option value="Pausadas">Pausadas</option>
                         </select>
                     </div>
-                    <button class="boton-limpiar" id="botonLimpiar">Limpiar</button>
+                    
+                    -->
+                    <button type="button" class="boton-limpiar" id="botonLimpiar">Limpiar</button>
                 </div>
                 <div class="contenido-tabla">
                     <table>
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Nombre Empresa</th>
                                 <th>Código Cobrable</th>
                                 <th>Código No Cobrable</th>
-                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
