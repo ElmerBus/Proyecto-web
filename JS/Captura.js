@@ -1,7 +1,7 @@
-
+registros()
 async function mostrarTabla() {
 
-      reg= await registros()
+      reg = await registros()
       reg.forEach(emp => {
             const row = document.createElement('tr');
             row.dataset.rowversion = emp.rowVersion
@@ -37,22 +37,23 @@ async function mostrarTabla() {
 
 }
 
-async function registros(){
+async function registros() {
       try {
-        const token = sessionStorage.getItem('token')
-        const respuesta = await fetch("https://localhost:7293/api/Usuario", {
+            const token = sessionStorage.getItem('token')
+            const usu = sessionStorage.getItem('nUsu')
+            const respuesta = await fetch(`https://localhost:7293/api/RegistroJornada/${usu}`, {
 
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "application/json"
-            }
-        })
+                  method: "GET",
+                  headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                  }
+            })
 
-        const datos = await respuesta.json()
-        return datos
+            const datos = await respuesta.json()
+            return datos
 
-    } catch {
-        console.log("ERROR CON LA APIS")
-    }
+      } catch {
+            console.log("ERROR CON LA APIS")
+      }
 }

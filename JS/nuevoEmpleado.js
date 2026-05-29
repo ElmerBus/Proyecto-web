@@ -18,7 +18,7 @@ async function nuevoUsuario() {
             validarCampo(manager)
       ) {
             const rol= manager.value ==="true"
-
+            
             const datos = {
                   noUsuario: numUsuario.value,
                   nombre: nombre.value,
