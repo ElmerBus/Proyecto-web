@@ -20,3 +20,7 @@
 .editar:focus{
       border: 0;
 }
+select{
+      border: 0;
+      
+}

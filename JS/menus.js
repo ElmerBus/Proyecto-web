@@ -80,6 +80,5 @@ async function nombre() {
             alert('error en la api')
       }
 }
-nombre()
 
 */

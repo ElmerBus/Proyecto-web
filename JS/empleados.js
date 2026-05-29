@@ -37,10 +37,10 @@ async function actualizarTabla() {
         }
         if (emp.estadoCuenta) {
             estado = "Activa"
-            boton = '<button class="accion-estado">❚❚</button>'
+            boton = '<button class="accion-pausar">❚❚</button>'
         } else {
             estado = "No activa"
-            boton = '<button class="accion-estado">▶</button>'
+            boton = '<button class="accion-activar">▶</button>'
         }
         row.innerHTML = `
                 <td>${emp.noUsuario}</td>
@@ -49,7 +49,7 @@ async function actualizarTabla() {
                 <td>${emp.apMaterno}</td>
                 <td>${emp.email}</td>
                 <td>${rol}</td>
-                <td><span class="diseño-estado">${estado}</span></td>
+                <td>${estado}</td>
                 <td>
                     ${boton}
                     <button class="accion-editar">✎</button>
@@ -99,8 +99,8 @@ bodyTablaDinamica.addEventListener('click', (e) => {
             const inputs = fila.querySelectorAll('input');
             const celdas = fila.querySelectorAll('td');
             const tipoEm = fila.querySelector('select').value
-            let rol,estado
-            if (tipoEm==="Empleado") {
+            let rol, estado
+            if (tipoEm === "Empleado") {
                 rol = false
             } else {
                 rol = true
@@ -156,7 +156,11 @@ bodyTablaDinamica.addEventListener('click', (e) => {
 
 
 
-    if (e.target.classList.contains('accion-estado')) {
+    if (e.target.classList.contains('accion-pausar')) {
+        e.target.classList.remove('accion-pausar')
+
+        e.target.classList.add('accion-activar')
+
         desactivar();
         async function desactivar() {
             try {
@@ -182,6 +186,40 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                 }
             } catch {
                 console.log("ERROR CON LA APIS")
+            }
+        }
+    } else {
+        if (e.target.classList.contains('accion-activar')) {
+            e.target.classList.remove('accion-ctivar')
+
+            e.target.classList.add('accion-pausar')
+
+            activar();
+            async function activar() {
+                try {
+                    const token = sessionStorage.getItem('token')
+                    const datos = {
+                        rowVersion: fila.dataset.rowversion
+                    }
+
+                    const respuesta = await fetch(`https://localhost:7293/api/Usuario/${numEmp}/activar`, {
+
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(datos)
+                    })
+
+                    if (respuesta.status == 204) {
+                        actualizarTabla()
+                    } else {
+                        alert(respuesta.message)
+                    }
+                } catch {
+                    console.log("ERROR CON LA APIS")
+                }
             }
         }
     }
