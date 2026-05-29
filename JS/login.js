@@ -64,9 +64,12 @@ async function iniciarSesion() {
                         sessionStorage.setItem("nUsu", resultado.user.noUsuario)
 
                         if (resultado.user.esManager) {
+                              
                               window.location.href = "../HTML/Empleados.html";
+                              console.log(resultado.message)
                         } else {
                               window.location.href = "../HTML/Captura.html";
+                              console.log(resultado.message)
                         }
 
                   } else {
