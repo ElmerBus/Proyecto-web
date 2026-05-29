@@ -1,4 +1,3 @@
-// Referencias del DOM
 const bodyTablaDinamica = document.getElementById('bodyTablaDinamica');
 const buscarNom = document.getElementById('buscarNombre');
 const filtroEstados = document.getElementById('filtroEstados');
@@ -6,55 +5,52 @@ const buscarFecha = document.getElementById('buscarFecha');
 const botonLimpiar = document.getElementById('botonLimpiar');
 let listaVaca;
 
-async function datos() {
-    listaVaca = await aprovarVaca()
-}
-
-function actualizarTabla() {
+async function actualizarTabla() {
     const nombreFiltrado = buscarNom.value.toLowerCase();
     const estadoFiltrado = filtroEstados.value;
     const fechaFiltrada = buscarFecha.value.toLowerCase();
 
-    // Filtrar la lista de empleados
-    const listaFiltrada = empleados.filter(emp => {
-        const nombreSimilar = emp.nombreSolicitante.toLowerCase().includes(nombreFiltrado);
-        const estadoSimilar = (estadoFiltrado === "Todos" || emp.estadoAprobacion === estadoFiltrado);
+    listaVaca = await vacaciones()
+
+    const listaFiltrada = listaVaca.filter(emp => {
+        //const nombreSimilar = emp.solicitanteId.toLowerCase().includes(nombreFiltrado);
+        const estadoSimilar = (estadoFiltrado === "Todos" || emp.estado === estadoFiltrado);
         const fechaSimilar = (emp.fechaInicio.includes(fechaFiltrada) || emp.fechaFin.includes(fechaFiltrada));
 
-        return nombreSimilar && estadoSimilar && fechaSimilar;
+        return estadoSimilar && fechaSimilar;
     });
 
-    // Limpiar contenido previo
+
     bodyTablaDinamica.innerHTML = "";
 
-    // Construir filas
     listaFiltrada.forEach(emp => {
         const row = document.createElement('tr');
+        // let opciones=""
+        // if(emp.estado==="Pendiente"){
+        //  opciones=`<select class="menu-acciones">
+        //         <option value="">Cambiar estado</option>
+        //         <option value="Aprobada">Aprobada</option>
+        //         <option value="Pendiente">Pendiente</option>
+        //         <option value="Rechazada">Rechazada</option>
+        //     </select>`
+        // }
         row.innerHTML = `
+            <td>${emp.vacacionId}</td>
             <td>${emp.solicitanteId}</td>
-            <td>${emp.nombreSolicitante} </td>
             <td>${emp.fechaInicio}</td>
             <td>${emp.fechaFin}</td>
-            <td><span class="diseño-estado">${emp.estadoAprobacion}</span></td>
+            <td>${emp.estado}</td>
             <td>
-                <select class="menu-acciones" onchange="seleccionaNuevoEstado(${emp.id}, this.value)">
+                <select class="menu-acciones"  data-id="${emp.vacacionId}"">
                     <option value="">Cambiar estado</option>
-                    <option value="Activa">Aprobado</option>
-                    <option value="Pausada">En espera</option>
-                    <option value="Denegado">Denegado</option>
+                    <option value="Aprobada">Aprobada</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Rechazada">Rechazada</option>
                 </select>
             </td>
         `;
         bodyTablaDinamica.appendChild(row);
     });
-
-    window.seleccionaNuevoEstado = function (id, estadoNuevo) {
-        const index = empleados.findIndex(e => e.id === id);
-        if (index !== -1) {
-            empleados[index].estado = estadoNuevo;
-            actualizarTabla(); // Actualiza la bista de la tabla
-        }
-    }
 }
 botonLimpiar.addEventListener('click', () => {
     buscarNom.value = "";
@@ -64,7 +60,62 @@ botonLimpiar.addEventListener('click', () => {
 });
 
 buscarNom.addEventListener('input', actualizarTabla);
-filtroEstados.addEventListener('change', actualizarTabla);
 buscarFecha.addEventListener('input', actualizarTabla);
+filtroEstados.addEventListener('change', actualizarTabla)
 
-document.addEventListener('DOMContentLoaded', datos);
+
+bodyTablaDinamica.addEventListener('change', async (e) => {
+    if (e.target.classList.contains('menu-acciones')) {
+
+        try {
+            const token = sessionStorage.getItem('token')
+            const id = e.target.dataset.id
+            console.log(e.target.value)
+            const datos = {
+                estadoDecision: e.target.value
+            }
+            
+            const respuesta = await fetch(`https://localhost:7293/api/Vacacion/${id}/evaluar`, {
+
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datos)
+            })
+            if(respuesta.status==403){
+                alert("No puedes modificar solicitudes de otro equipo")
+            }else{
+                if(respuesta.status==200){
+                    actualizarTabla
+                }
+            }
+        } catch {
+            console.log("ERROR CON LA APIS")
+        }
+    }
+})
+
+document.addEventListener('DOMContentLoaded', actualizarTabla);
+
+async function vacaciones() {
+    try {
+        const token = sessionStorage.getItem('token')
+        const respuesta = await fetch("https://localhost:7293/api/Vacacion", {
+
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        })
+
+        const datos = await respuesta.json()
+        return datos
+
+    } catch {
+        console.log("ERROR CON LA APIS")
+    }
+}
+

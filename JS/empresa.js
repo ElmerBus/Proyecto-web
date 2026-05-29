@@ -107,7 +107,7 @@ async function nuevaEmpresa() {
                         body: JSON.stringify(datos)
                   })
                   const resultado = await respuesta.json()
-                  actualizarTabla
+                  actualizarTabla()
                   alert(resultado.message)
 
             } catch {

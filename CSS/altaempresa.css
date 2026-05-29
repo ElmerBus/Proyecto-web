@@ -5,6 +5,7 @@
 }
 .tarjeta{
       width: 25%;
+      max-height: 400px;
 }
 .tarjeta2{
       width: 72%;
