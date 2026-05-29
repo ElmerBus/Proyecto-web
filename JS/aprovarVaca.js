@@ -25,15 +25,15 @@ async function actualizarTabla() {
 
     listaFiltrada.forEach(emp => {
         const row = document.createElement('tr');
-        // let opciones=""
-        // if(emp.estado==="Pendiente"){
-        //  opciones=`<select class="menu-acciones">
-        //         <option value="">Cambiar estado</option>
-        //         <option value="Aprobada">Aprobada</option>
-        //         <option value="Pendiente">Pendiente</option>
-        //         <option value="Rechazada">Rechazada</option>
-        //     </select>`
-        // }
+        let opciones = ""
+        if (emp.estado === "Pendiente") {
+            opciones = `<select class="menu-acciones">
+                <option value="">Cambiar estado</option>
+                <option value="Aprobada">Aprobada</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Rechazada">Rechazada</option>
+            </select>`
+        }
         row.innerHTML = `
             <td>${emp.vacacionId}</td>
             <td>${emp.solicitanteId}</td>
@@ -41,12 +41,7 @@ async function actualizarTabla() {
             <td>${emp.fechaFin}</td>
             <td>${emp.estado}</td>
             <td>
-                <select class="menu-acciones"  data-id="${emp.vacacionId}"">
-                    <option value="">Cambiar estado</option>
-                    <option value="Aprobada">Aprobada</option>
-                    <option value="Pendiente">Pendiente</option>
-                    <option value="Rechazada">Rechazada</option>
-                </select>
+                ${opciones}
             </td>
         `;
         bodyTablaDinamica.appendChild(row);
@@ -74,7 +69,7 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
             const datos = {
                 estadoDecision: e.target.value
             }
-            
+
             const respuesta = await fetch(`https://localhost:7293/api/Vacacion/${id}/evaluar`, {
 
                 method: "POST",
@@ -84,10 +79,10 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
                 },
                 body: JSON.stringify(datos)
             })
-            if(respuesta.status==403){
+            if (respuesta.status == 403) {
                 alert("No puedes modificar solicitudes de otro equipo")
-            }else{
-                if(respuesta.status==200){
+            } else {
+                if (respuesta.status == 200) {
                     actualizarTabla
                 }
             }
