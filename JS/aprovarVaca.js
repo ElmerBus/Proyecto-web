@@ -82,9 +82,9 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
             if (respuesta.status == 403) {
                 alert("No puedes modificar solicitudes de otro equipo")
             } else {
-                if (respuesta.status == 200) {
+                
                     actualizarTabla()
-                }
+                
             }
         } catch {
             console.log("ERROR CON LA APIS")
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', actualizarTabla);
 async function vacaciones() {
     try {
         const token = sessionStorage.getItem('token')
-        const respuesta = await fetch("https://localhost:7293/api/Vacacion", {
+        const respuesta = await fetch("/api/Vacacion", {
 
             method: "GET",
             headers: {

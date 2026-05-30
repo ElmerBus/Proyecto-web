@@ -9,7 +9,7 @@ async function verificarToken() {
                   return false;
             }
 
-            const respuesta = await fetch(`https://localhost:7293/api/LogIn/logout`, {
+            const respuesta = await fetch(`/api/LogIn/logout`, {
                   method: "POST",
                   headers: {
                         "Authorization": `Bearer ${token}`,
@@ -130,7 +130,7 @@ async function logout() {
       try {
             const token = sessionStorage.getItem('token')
             
-            const respuesta = await fetch(`https://localhost:7293/api/LogIn/logout`, {
+            const respuesta = await fetch(`/api/LogIn/logout`, {
 
                   method: "POST",
                   headers: {

@@ -47,7 +47,7 @@ async function iniciarSesion() {
             }
 
             try {
-                  const respuesta = await fetch("https://localhost:7293/api/LogIn/login", {
+                  const respuesta = await fetch("/api/LogIn/login", {
                         method: "POST",
                         headers: {
                               "Content-Type": "application/json"
