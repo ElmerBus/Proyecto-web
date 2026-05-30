@@ -83,7 +83,7 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
                 alert("No puedes modificar solicitudes de otro equipo")
             } else {
                 if (respuesta.status == 200) {
-                    actualizarTabla
+                    actualizarTabla()
                 }
             }
         } catch {

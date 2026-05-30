@@ -4,6 +4,10 @@ const buscarCod = document.getElementById('buscarCodigo');
 const botonLimpiar = document.getElementById('botonLimpiar');
 let empresas
 
+
+
+
+
 async function actualizarTabla() {
       const nombreFiltrado = buscarNom.value.toLowerCase();
       const codigoFiltrado = buscarCod.value.toLowerCase();

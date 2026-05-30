@@ -1,3 +1,40 @@
+document.addEventListener('DOMContentLoaded', verificarToken);
+async function verificarToken() {
+      try {
+            const token = sessionStorage.getItem('token');
+            
+            
+            if (!token) {
+                  redirigirAlLogin();
+                  return false;
+            }
+
+            const respuesta = await fetch(`https://localhost:7293/api/LogIn/logout`, {
+                  method: "POST",
+                  headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                  },
+            });
+
+            if (respuesta.status !== 200) {
+                  redirigirAlLogin();
+                  return false;
+            } 
+
+            return true; 
+      } catch (error) {
+            console.error("Error con la API:", error);
+            redirigirAlLogin(); 
+      }
+}
+
+
+function redirigirAlLogin() {
+      sessionStorage.removeItem('nUsu');
+      sessionStorage.removeItem('token'); // Es buena idea borrar también el token inválido
+      window.location.href = "../HTML/login.html";
+}
 function verContrasena(campoPassword) {
       if (campoPassword.type === "password") {
             campoPassword.placeholder = "Contraseña";
@@ -8,6 +45,7 @@ function verContrasena(campoPassword) {
             campoPassword.type = "password";
       }
 }
+
 
 function validarCampo(campo) {
       if (campo.value.trim() === '') {
@@ -71,7 +109,7 @@ async function nombre() {
             })
             const datos = await respuesta.json()
             console.log(datos)
-            nom.textContent = `${datos.nombre} ${datos.ap_paterno}`
+            nom.textContent = `${datos.nombre} ${datos.ap_paterno}  ${datos.ap_materno}`
       }
 
 
