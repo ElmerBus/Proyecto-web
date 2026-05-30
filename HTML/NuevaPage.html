@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top empleados</title>
+
+    <link rel="stylesheet" href="../CSS/estiloBarra.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #A550BB;
+            font-family: Arial;
+        }
+
+        /* 🔥 IMPORTANTE: evita espacio arriba */
+        .barra {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            margin: 0;
+            z-index: 1000;
+        }
+
+        /* CONTENIDO */
+
+        .contenedor {
+            padding-top: 90px; /* evita que la barra tape el contenido */
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .tarjeta {
+            background-color: white;
+            padding: 20px;
+        }
+
+        .titulo {
+            display: flex;
+            align-items: center;
+        }
+
+        .icono {
+            margin-right: 10px;
+        }
+
+        .topEmpleados {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .empleadoTop {
+            background-color: white;
+            border: 1px solid gray;
+            padding: 20px;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .nombre {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .dato {
+            color: gray;
+            margin-bottom: 5px;
+        }
+
+        .puesto {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        @media(max-width:700px){
+            .topEmpleados{
+                flex-direction: column;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 🔥 BARRA -->
+
+    <div class="barra">
+
+        <div class="ladoizquierdo">
+
+            <button class="boton1" id="btnMenu">
+                <h1>☰ Administrador</h1>
+            </button>
+
+            <div class="username">
+                <h1>Administrador</h1>
+            </div>
+
+            <div class="grupo">
+
+                <div class="menu">
+                    <div class="botones">Usuarios</div>
+                </div>
+
+                <a href="../HTML/Empresas.HTML">
+                    <div class="botones">Empresas</div>
+                </a>
+
+                <a href="../HTML/AprobarVacaciones.html">
+                    <div class="botones">Aprobar Vacaciones</div>
+                </a>
+
+                <a href="../HTML/EditarHorasAdmin.html">
+                    <div class="botones">Control de asistencia</div>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="ladoizquierdo">
+
+            <div class="username">
+                <h3>Fernando Lopez</h3>
+            </div>
+
+            <div class="foto">
+                <h1>👤</h1>
+            </div>
+
+            <a href="Login.html">
+                <div class="botones">Cerrar Sesion</div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- MENU MOVIL -->
+
+    <div class="menuMovil" id="menuMovil">
+
+        <a href="../HTML/Empleados.html">
+            <div class="opcionMenu">Usuarios</div>
+        </a>
+
+        <a href="../HTML/Empresas.html">
+            <div class="opcionMenu">Empresas</div>
+        </a>
+
+        <a href="../HTML/AprobarVacaciones.html">
+            <div class="opcionMenu">Aprobar vacaciones</div>
+        </a>
+
+        <a href="../HTML/EditarHorasAdmin.html">
+            <div class="opcionMenu">Control de asistencia</div>
+        </a>
+
+        <a href="../HTML/Login.html">
+            <div class="opcionMenu">Cerrar Sesion</div>
+        </a>
+
+    </div>
+
+    <!-- CONTENIDO -->
+
+    <div class="contenedor">
+
+        <div class="tarjeta">
+
+            <div class="titulo">
+                <div class="icono">🏆</div>
+                <h2>Top 3 empleados más trabajadores</h2>
+            </div>
+
+            <div class="topEmpleados">
+
+                <!-- 1 -->
+                <div class="empleadoTop">
+                    <div class="nombre">Juan Pérez</div>
+                    <div class="dato">Num Emp: 001</div>
+                    <div class="dato">Horas trabajadas: 190 hrs</div>
+                    <div class="dato">Área: Producción</div>
+                    <div class="puesto">🥇 Primer lugar</div>
+                </div>
+
+                <!-- 2 -->
+                <div class="empleadoTop">
+                    <div class="nombre">María López</div>
+                    <div class="dato">Num Emp: 002</div>
+                    <div class="dato">Horas trabajadas: 175 hrs</div>
+                    <div class="dato">Área: Calidad</div>
+                    <div class="puesto">🥈 Segundo lugar</div>
+                </div>
+
+                <!-- 3 -->
+                <div class="empleadoTop">
+                    <div class="nombre">Carlos Ramírez</div>
+                    <div class="dato">Num Emp: 003</div>
+                    <div class="dato">Horas trabajadas: 160 hrs</div>
+                    <div class="dato">Área: Logística</div>
+                    <div class="puesto">🥉 Tercer lugar</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../JS/menus.js"></script>
+
+</body>
+
+</html>
