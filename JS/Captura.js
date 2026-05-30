@@ -10,7 +10,7 @@
 //     try {
 //         const token = sessionStorage.getItem('token')
 
-//         const res = await fetch("https://localhost:7293/api/Proyecto", {
+//         const res = await fetch("/api/Proyecto", {
 //             headers: {
 //                 "Authorization": `Bearer ${token}`
 //             }
@@ -119,7 +119,7 @@
 //                 periodoId: 1
 //             }
 
-//             const res = await fetch("https://localhost:7293/api/RegistroJornada", {
+//             const res = await fetch("/api/RegistroJornada", {
 //                 method: "POST",
 //                 headers: {
 //                     "Content-Type": "application/json",

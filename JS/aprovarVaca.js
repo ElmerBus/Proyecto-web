@@ -70,7 +70,7 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
                 estadoDecision: e.target.value
             }
 
-            const respuesta = await fetch(`https://localhost:7293/api/Vacacion/${id}/evaluar`, {
+            const respuesta = await fetch(`/api/Vacacion/${id}/evaluar`, {
 
                 method: "POST",
                 headers: {
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', actualizarTabla);
 async function vacaciones() {
     try {
         const token = sessionStorage.getItem('token')
-        const respuesta = await fetch("https://localhost:7293/api/Vacacion", {
+        const respuesta = await fetch("/api/Vacacion", {
 
             method: "GET",
             headers: {
