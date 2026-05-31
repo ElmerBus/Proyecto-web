@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
     <link rel="stylesheet" href="../CSS/estiloBarra.css">
-    <link rel="stylesheet" href="../CSS/captura.css">
+    <link rel="stylesheet" href="../CSS/editar.css">
 
 
 </head>
@@ -114,24 +114,29 @@
                     <div class="semana"><button class="btnSemanas">Semana siguiente 🡺</button></div>
                 </div>
                 <div class="fecha">
-                    <p>La actual semana es de [fecha inicio] a [fecha fin]</p>
+                    <p id="fechaSemana">La actual semana es de [fecha inicio] a [fecha fin]</p>
                 </div>
-                <div class="divisor">
-
-                    <div class="campo2">
-                        <label>Núm de reloj:</label>
-                        <input id="txtNumReloj" class="Inputs" type="number" placeholder="Ej: 000123456" maxlength="9">
-                        <button class="Inputs" id="btnBuscar">🔍 Buscar empleado</button>
+                <div class="divisor-editar">
+                    <div class="captura-empleado">
+                        <div class="campo2">
+                            <label>Núm de reloj:</label>
+                            <input id="txtNumReloj" class="Inputs" type="number" placeholder="Ej: 000123456">
+                            <button class="Inputs" id="btnBuscar">🔍 Buscar empleado</button>
+                        </div>
                     </div>
 
-                    <div class="campo2">
-                        <label>Empleado:</label>
-                        <input id="txtNom" class="Inputs" type="text" readonly>
+                    <div class="informacion-empleado">
+
+                        <div class="campo2">
+                            <label>Empleado:</label>
+                            <input id="txtNom" class="Inputs" type="text" readonly>
+                        </div>
                     </div>
+
                     <div class="capturaCodigo">
                         <div class="campo2">
                             <label>Codigo:</label>
-                            <input id="txtCodigo" class="Inputs" ,type="text" placeholder="Ingresa código ej: L/M123">
+                            <input id="txtCodigo" class="Inputs" ,type="text", placeholder="Primero ingresa un empleado", readonly>
                             <button class="Inputs" id="btnAgregar">Añadir registro</button>
                         </div>
 
@@ -140,7 +145,7 @@
                 <h4>Registros ingresados</h4>
                 <div class="contenido-tabla">
 
-                    <table>
+                    <table id="tablaRegistros">
                         <thead>
                             <tr id="filaEncabezado">
                                 <th>Codigo</th>
@@ -189,6 +194,7 @@
 
 </body>
 <script src="../JS/menus.js"></script>
+<script src="../JS/editar.js"></script>
 
 
 </html>
