@@ -160,18 +160,18 @@ document.getElementById("tablaRegistros").addEventListener("input", function (e)
         }
         fila.cells[8].textContent = totalcodigo;
 
-        // ---- Límite semanal (40h) ----
+        // ---- Límite semanal (168h) ----
         totalgeneral = 0;
         for (var i = 1; i < filas.length; i++) {
             totalgeneral += parseInt(filas[i].cells[8].textContent) || 0;
         }
 
-        if (totalgeneral > 40) {
-            var exceso = totalgeneral - 40;
+        if (totalgeneral > 168) {
+            var exceso = totalgeneral - 168;
             var valorActual = parseInt(e.target.textContent) || 0;
             var nuevoValor = valorActual - exceso;
             e.target.textContent = nuevoValor < 0 ? 0 : nuevoValor;
-            alert("El total semanal no puede superar las 40 horas. Se ajustó el valor a " + e.target.textContent + ".");
+            alert("El total semanal no puede superar las 168 horas. Se ajustó el valor a " + e.target.textContent + ".");
 
             // Recalcular total de fila después del ajuste
             totalcodigo = 0;
