@@ -1,141 +1,260 @@
-// const botonAgregar = document.getElementById('btnAgregar')
-// const botonGuardar = document.querySelector('.btnGuardar')
-// const txtCodigo = document.getElementById('txtCodigo')
-// const bodyTabla = document.querySelector('.bodyTablaDinamica')
+var totalcodigo = 0;
+var totalgeneral = 0;
 
-// // =========================
-// // 🔹 OBTENER CÓDIGOS
-// // =========================
-// async function obtenerCodigos() {
-//     try {
-//         const token = sessionStorage.getItem('token')
 
-//         const res = await fetch("/api/Proyecto", {
-//             headers: {
-//                 "Authorization": `Bearer ${token}`
-//             }
-//         })
+// ==================== SEMANAS ====================
 
-//         if (!res.ok) return []
+function mostrarSemanas(offsetDias) {
+    var mensajeSemana = document.getElementById("fechaSemana");
+    var fechaActual = new Date();
+    fechaActual.setDate(fechaActual.getDate() + offsetDias);
 
-//         return await res.json()
+    var diaSemana = fechaActual.getDay();
+    var diasHastaLunes = (diaSemana + 6) % 7;
 
-//     } catch (e) {
-//         console.log("ERROR API", e)
-//         return []
-//     }
-// }
+    var fechaInicio = new Date(fechaActual);
+    fechaInicio.setDate(fechaActual.getDate() - diasHastaLunes);
 
-// // =========================
-// // 🔹 CREAR FILA
-// // =========================
-// function crearFila(codigo) {
+    var fechaFin = new Date(fechaInicio);
+    fechaFin.setDate(fechaInicio.getDate() + 6);
 
-//     document.getElementById('filaVacia').style.display = 'none'
+    mensajeSemana.textContent = "La semana actual es de " + fechaInicio.toLocaleDateString() + " a " + fechaFin.toLocaleDateString();
+}
 
-//     const fila = document.createElement('tr')
+mostrarSemanas(0);
 
-//     fila.innerHTML = `
-//         <td class="codigo"><b>${codigo}</b></td>
 
-//         <td><input class="h" type="number" min="0" max="24"></td>
-//         <td><input class="h" type="number" min="0" max="24"></td>
-//         <td><input class="h" type="number" min="0" max="24"></td>
-//         <td><input class="h" type="number" min="0" max="24"></td>
-//         <td><input class="h" type="number" min="0" max="24"></td>
-//         <td><input class="h" type="number" min="0" max="24"></td>
-//         <td><input class="h" type="number" min="0" max="24"></td>
+// ==================== VALIDACIONES ====================
 
-//         <td class="total">0</td>
+function codigoEsValido(codigo) {
+    return /^[LM]\d{3}$/.test(codigo);
+}
 
-//         <td><button class="eliminar">Eliminar</button></td>
-//     `
+function codigoYaExiste(codigo) {
+    var tabla = document.getElementById("tablaRegistros");
+    var filas = tabla.getElementsByTagName("tr");
 
-//     // eliminar fila
-//     fila.querySelector('.eliminar').addEventListener('click', () => {
-//         fila.remove()
+    for (var i = 1; i < filas.length; i++) {
+        if (filas[i].cells[0].textContent === codigo) {
+            return true;
+        }
+    }
+    return false;
+}
 
-//         if (!bodyTabla.querySelector('tr')) {
-//             document.getElementById('filaVacia').style.display = 'table-row'
-//         }
-//     })
 
-//     bodyTabla.appendChild(fila)
-// }
+// ==================== TABLA ====================
 
-// // =========================
-// // 🔹 AGREGAR CÓDIGO
-// // =========================
-// botonAgregar.addEventListener('click', async () => {
+function hacerCeldaEditable(celda) {
+    celda.addEventListener("click", function () {
+        celda.textContent = "";
+        celda.contentEditable = true;
+        celda.addEventListener("keypress", function (e) {
+            if (isNaN(e.key)) {
+                e.preventDefault();
+            }
+        });
+        //celda sin presionar
+        celda.addEventListener("blur", function () {
+            if (celda.textContent === "") {
+                celda.textContent = "0";
+            }
+        });
+    });
+}
 
-//     const codigo = txtCodigo.value.trim().toUpperCase()
-//     if (!codigo) return alert("Ingresa código")
+function agregarFila(codigo) {
+    var tabla = document.getElementById("tablaRegistros");
 
-//     const lista = await obtenerCodigos()
-//     const existe = lista.some(e => e.codigo === codigo)
+    var filaVacia = document.getElementById("filaVacia");
+    if (filaVacia) {
+        tabla.deleteRow(filaVacia.rowIndex);
+    }
 
-//     if (!existe) return alert("Código no existe")
+    var nuevaFila = tabla.insertRow();
+    nuevaFila.className = codigo;
 
-//     if (document.querySelector(`tr[data-codigo="${codigo}"]`)) {
-//         return alert("Ya agregado")
-//     }
+    nuevaFila.insertCell(0).textContent = codigo;
 
-//     crearFila(codigo)
-//     txtCodigo.value = ""
-// })
+    for (var i = 1; i <= 7; i++) {
+        var celda = nuevaFila.insertCell(i);
+        celda.textContent = "0";
+        hacerCeldaEditable(celda);
+    }
 
-// // =========================
-// // 🔹 GUARDAR REGISTROS
-// // =========================
-// botonGuardar.addEventListener('click', async () => {
+    nuevaFila.insertCell(8).textContent = "0";
+    nuevaFila.insertCell(9).innerHTML = '<button class="btnEliminar">Eliminar</button>';
+}
 
-//     const filas = document.querySelectorAll('.bodyTablaDinamica tr')
 
-//     if (!filas.length) return alert("No hay registros")
+// ==================== BOTÓN AGREGAR ====================
 
-//     const token = sessionStorage.getItem('token')
-//     const noUsuario = sessionStorage.getItem('nUsu')
+document.getElementById("btnAgregar").addEventListener("click", function () {
+    var codigo = document.getElementById("txtCodigo").value;
 
-//     try {
+    if (codigo === "") {
+        alert("Por favor, ingrese un código.");
+        return;
+    }
 
-//         for (let fila of filas) {
+    if (!codigoEsValido(codigo)) {
+        alert("Código inválido. Debe tener el formato LXXX o MXXX.");
+        return;
+    }
 
-//             const codigo = fila.querySelector('.codigo')?.innerText
-//             if (!codigo) continue
+    if (codigoYaExiste(codigo)) {
+        alert("El código " + codigo + " ya existe en la tabla.");
+        return;
+    }
 
-//             const inputs = fila.querySelectorAll('input.h')
+    agregarFila(codigo);
+});
 
-//             let totalHoras = 0
 
-//             inputs.forEach(i => {
-//                 totalHoras += Number(i.value) || 0
-//             })
+// ==================== BOTÓN ELIMINAR ====================
+document.getElementById("tablaRegistros").addEventListener("click", function (e) {
+    if (e.target.classList.contains("btnEliminar")) {
+        var fila = e.target.closest("tr");
+        fila.parentNode.removeChild(fila);
+    }
 
-//             const data = {
-//                 codigo: codigo,
-//                 fecha: new Date().toISOString(),
-//                 horas: totalHoras,
-//                 noUsuario: Number(noUsuario),
-//                 periodoId: 1
-//             }
+    //Agregar la fila por defecto si no hay registros
+    var tabla = document.getElementById("tablaRegistros");
+    if (tabla.rows.length === 1) {
+        var filaVacia = tabla.insertRow();
+        filaVacia.id = "filaVacia";
+        var celda = filaVacia.insertCell(0);
+        celda.colSpan = 10;
+        celda.textContent = "Sin registros.";
+    }
 
-//             const res = await fetch("/api/RegistroJornada", {
-//                 method: "POST",
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                     "Authorization": `Bearer ${token}`
-//                 },
-//                 body: JSON.stringify(data)
-//             })
+});
 
-//             if (!res.ok) {
-//                 console.log(await res.text())
-//             }
-//         }
+document.getElementById("tablaRegistros").addEventListener("input", function (e) {
+    if (e.target.tagName === "TD" && e.target.cellIndex >= 1 && e.target.cellIndex <= 7) {
+        var fila = e.target.parentNode;
+        var columna = e.target.cellIndex;
+        var tabla = document.getElementById("tablaRegistros");
+        var filas = tabla.getElementsByTagName("tr");
 
-//         alert("Registros guardados correctamente")
+        // ---- Límite diario por columna (24h) ----
+        var totalDiario = 0;
+        for (var i = 1; i < filas.length; i++) {
+            if (filas[i].cells.length > 8) {
+                totalDiario += parseInt(filas[i].cells[columna].textContent) || 0;
+            }
+        }
 
-//     } catch (e) {
-//         console.log("ERROR:", e)
-//     }
-// })
+        if (totalDiario > 24) {
+            var exceso = totalDiario - 24;
+            var valorActual = parseInt(e.target.textContent) || 0;
+            var nuevoValor = valorActual - exceso;
+            e.target.textContent = nuevoValor < 0 ? 0 : nuevoValor;
+            alert("El total diario no puede superar las 24 horas. Se ajustó el valor a " + e.target.textContent + ".");
+        }
+
+        // ---- Recalcular total por fila ----
+        totalcodigo = 0;
+        for (var i = 1; i <= 7; i++) {
+            totalcodigo += parseInt(fila.cells[i].textContent) || 0;
+        }
+        fila.cells[8].textContent = totalcodigo;
+
+        // ---- Límite semanal (40h) ----
+        totalgeneral = 0;
+        for (var i = 1; i < filas.length; i++) {
+            totalgeneral += parseInt(filas[i].cells[8].textContent) || 0;
+        }
+
+        if (totalgeneral > 40) {
+            var exceso = totalgeneral - 40;
+            var valorActual = parseInt(e.target.textContent) || 0;
+            var nuevoValor = valorActual - exceso;
+            e.target.textContent = nuevoValor < 0 ? 0 : nuevoValor;
+            alert("El total semanal no puede superar las 40 horas. Se ajustó el valor a " + e.target.textContent + ".");
+
+            // Recalcular total de fila después del ajuste
+            totalcodigo = 0;
+            for (var i = 1; i <= 7; i++) {
+                totalcodigo += parseInt(fila.cells[i].textContent) || 0;
+            }
+            fila.cells[8].textContent = totalcodigo;
+
+            // Recalcular total general después del ajuste
+            totalgeneral = 0;
+            for (var i = 1; i < filas.length; i++) {
+                totalgeneral += parseInt(filas[i].cells[8].textContent) || 0;
+            }
+        }
+
+        document.getElementById("totalHoras").textContent = totalgeneral;
+    }
+});
+
+
+// ==================== GUARDAR REGISTROS ====================
+
+function obtenerNoUsuarioDelToken() {
+    const token = sessionStorage.getItem('token');
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return parseInt(payload.sub);
+}
+
+async function guardarRegistros() {
+    const periodoId = 1;
+    const noUsuario = obtenerNoUsuarioDelToken();
+    const token = sessionStorage.getItem('token');
+
+    const tabla = document.getElementById("tablaRegistros");
+    const filas = tabla.getElementsByTagName("tr");
+
+    const hoy = new Date();
+    const diffLunes = (hoy.getDay() + 6) % 7;
+    const lunes = new Date(hoy);
+    lunes.setDate(hoy.getDate() - diffLunes);
+
+    try {
+        for (let i = 1; i < filas.length; i++) {
+            const fila = filas[i];
+            if (fila.cells.length <= 8) continue;
+
+            const codigo = fila.cells[0].textContent.trim();
+
+            for (let d = 0; d < 7; d++) {
+                const horas = parseInt(fila.cells[d + 1].textContent) || 0;
+                if (horas === 0) continue;
+
+                const fecha = new Date(lunes);
+                fecha.setDate(lunes.getDate() + d);
+
+                const datos = {
+                    fecha: fecha.toISOString(),
+                    horas: horas,
+                    noUsuario: noUsuario,
+                    periodoId: periodoId,
+                    codigo: codigo
+                }
+
+                const respuesta = await fetch("https://localhost:7293/api/RegistroJornada", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(datos)
+                })
+
+                const resultado = await respuesta.json()
+                if (!respuesta.ok) {
+                    alert(resultado.message)
+                    return
+                }
+            }
+        }
+        alert("Registros guardados correctamente.")
+    } catch {
+        alert("ERROR CON LA API")
+    }
+}
+
+document.querySelector(".btnGuardar").addEventListener("click", guardarRegistros);
