@@ -1,4 +1,3 @@
-
 const bodyTablaDinamica = document.getElementById('bodyTablaDinamica');
 const buscarNom = document.getElementById('buscarNombre');
 const buscarCorreo = document.getElementById('buscarCorreo');
@@ -81,7 +80,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
         celdas[1].innerHTML = `<input class="editar" value="${celdas[1].textContent}">`;
         celdas[2].innerHTML = `<input class="editar" value="${celdas[2].textContent}">`;
         celdas[3].innerHTML = `<input class="editar" value="${celdas[3].textContent}">`;
-        celdas[4].innerHTML = `<input class="editar" value="${celdas[4].textContent}">`;
+        //celdas[4].innerHTML = `<input class="editar" value="${celdas[4].textContent}">`;
         celdas[5].innerHTML = `<select>
                                         <option >Manager</option>
 
@@ -122,7 +121,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                         nombre: inputs[0].value,
                         apPaterno: inputs[1].value,
                         apMaterno: inputs[2].value,
-                        email: inputs[3].value,
+                        email: celdas[4].textContent,
                         esManager: rol,
                         estadoCuenta: estado,
                         debeCambiarPass: false,
@@ -130,7 +129,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                         rowVersion: fila.dataset.rowversion
                     }
 
-                    const respuesta = await fetch(`/api/Usuario/${celdas[0].textContent}`, {
+                    const respuesta = await fetch(`https://localhost:7293/api/Usuario/${celdas[0].textContent}`, {
 
                         method: "POST",
                         headers: {
@@ -169,7 +168,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                     rowVersion: fila.dataset.rowversion
                 }
 
-                const respuesta = await fetch(`/api/Usuario/${numEmp}/desactivar`, {
+                const respuesta = await fetch(`https://localhost:7293/api/Usuario/${numEmp}/desactivar`, {
 
                     method: "POST",
                     headers: {
@@ -202,7 +201,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                         rowVersion: fila.dataset.rowversion
                     }
 
-                    const respuesta = await fetch(`/api/Usuario/${numEmp}/activar`, {
+                    const respuesta = await fetch(`https://localhost:7293/api/Usuario/${numEmp}/activar`, {
 
                         method: "POST",
                         headers: {
@@ -245,7 +244,7 @@ async function usuarios() {
 
     try {
         const token = sessionStorage.getItem('token')
-        const respuesta = await fetch("/api/Usuario", {
+        const respuesta = await fetch("https://localhost:7293/api/Usuario", {
 
             method: "GET",
             headers: {

@@ -57,7 +57,7 @@ async function cambiarContraseña() {
 
             }
 
-            const respuesta = await fetch(`/api/Usuario/${nuSu}/cambiar-contrasena`, {
+            const respuesta = await fetch(`https://localhost:7293/api/Usuario/${nuSu}/cambiar-contrasena`, {
 
                   method: "POST",
                   headers: {

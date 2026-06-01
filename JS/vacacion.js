@@ -18,7 +18,7 @@ async function solicitar() {
                   solicitanteId: nuSu
             }
             try {
-                  const respuesta = await fetch(`/api/Vacacion`, {
+                  const respuesta = await fetch(`https://localhost:7293/api/Vacacion`, {
 
                         method: "POST",
                         headers: {

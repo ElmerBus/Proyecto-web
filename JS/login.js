@@ -47,7 +47,7 @@ async function iniciarSesion() {
             }
 
             try {
-                  const respuesta = await fetch("/api/LogIn/login", {
+                  const respuesta = await fetch("https://localhost:7293/api/LogIn/login", {
                         method: "POST",
                         headers: {
                               "Content-Type": "application/json"
@@ -62,6 +62,7 @@ async function iniciarSesion() {
 
                         sessionStorage.setItem("token", resultado.user.token)
                         sessionStorage.setItem("nUsu", resultado.user.noUsuario)
+                        sessionStorage.setItem("tipUsu",resultado.user.esManager)
 
                         if (resultado.user.esManager) {
                               

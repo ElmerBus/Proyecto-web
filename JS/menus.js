@@ -9,7 +9,7 @@ async function verificarToken() {
                   return false;
             }
 
-            const respuesta = await fetch(`/api/LogIn/logout`, {
+            const respuesta = await fetch(`https://localhost:7293/api/LogIn/logout`, {
                   method: "POST",
                   headers: {
                         "Authorization": `Bearer ${token}`,
@@ -21,10 +21,9 @@ async function verificarToken() {
                   redirigirAlLogin();
                   return false;
             } 
-
+            
             return true; 
-      } catch (error) {
-            console.error("Error con la API:", error);
+      } catch {
             redirigirAlLogin(); 
       }
 }
@@ -32,9 +31,10 @@ async function verificarToken() {
 
 function redirigirAlLogin() {
       sessionStorage.removeItem('nUsu');
-      sessionStorage.removeItem('token'); // Es buena idea borrar también el token inválido
+      sessionStorage.removeItem('token'); 
       window.location.href = "../HTML/login.html";
 }
+
 function verContrasena(campoPassword) {
       if (campoPassword.type === "password") {
             campoPassword.placeholder = "Contraseña";
@@ -130,7 +130,7 @@ async function logout() {
       try {
             const token = sessionStorage.getItem('token')
             
-            const respuesta = await fetch(`/api/LogIn/logout`, {
+            const respuesta = await fetch(`https://localhost:7293/api/LogIn/logout`, {
 
                   method: "POST",
                   headers: {

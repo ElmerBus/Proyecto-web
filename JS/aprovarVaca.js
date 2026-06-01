@@ -27,7 +27,7 @@ async function actualizarTabla() {
         const row = document.createElement('tr');
         let opciones = ""
         if (emp.estado === "Pendiente") {
-            opciones = `<select class="menu-acciones">
+            opciones = `<select class="menu-acciones" data-id="${emp.vacacionId}">
                 <option value="">Cambiar estado</option>
                 <option value="Aprobada">Aprobada</option>
                 <option value="Pendiente">Pendiente</option>
@@ -64,8 +64,9 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
 
         try {
             const token = sessionStorage.getItem('token')
+
             const id = e.target.dataset.id
-            console.log(e.target.value)
+
             const datos = {
                 estadoDecision: e.target.value
             }
@@ -79,13 +80,17 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
                 },
                 body: JSON.stringify(datos)
             })
-            if (respuesta.status == 403) {
-                alert("No puedes modificar solicitudes de otro equipo")
-            } else {
-                
-                    actualizarTabla()
+
+
+            if (respuesta.status == 200) {
+                actualizarTabla()
+            }else{
                 
             }
+
+                
+
+            
         } catch {
             console.log("ERROR CON LA APIS")
         }
@@ -97,7 +102,7 @@ document.addEventListener('DOMContentLoaded', actualizarTabla);
 async function vacaciones() {
     try {
         const token = sessionStorage.getItem('token')
-        const respuesta = await fetch("/api/Vacacion", {
+        const respuesta = await fetch("https://localhost:7293/api/Vacacion", {
 
             method: "GET",
             headers: {

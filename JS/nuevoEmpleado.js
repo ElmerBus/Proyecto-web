@@ -22,14 +22,15 @@ async function nuevoUsuario() {
             const datos = {
                   noUsuario: numUsuario.value,
                   nombre: nombre.value,
-                  apPaterno: apellido1.value,   
+                  apPaterno: apellido1.value,  
+                  apMaterno: apellido2.value,
                   email: correo.value,
                   contrasena: "Ferrocarril12!?2",
                   esManager: rol
             }
             try {
                   const token = sessionStorage.getItem('token')
-                  const respuesta = await fetch("/api/Usuario", {
+                  const respuesta = await fetch("https://localhost:7293/api/Usuario", {
                         method: "POST",
                         headers: {
                               "Authorization": `Bearer ${token}`,
