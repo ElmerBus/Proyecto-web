@@ -1,3 +1,6 @@
+if(sessionStorage.getItem("tipUsu")==="false"){
+      window.location.href="../HTMl/login.html"
+}
 const bodyTablaDinamica = document.getElementById('bodyTablaDinamica');
 const buscarNom = document.getElementById('buscarNombre');
 const buscarCorreo = document.getElementById('buscarCorreo');

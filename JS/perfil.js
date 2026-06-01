@@ -1,3 +1,7 @@
+if (sessionStorage.getItem("tipUsu") === "true") {
+      window.location.href = "../HTMl/login.html"
+}
+
 const verContra = document.getElementById('vizualizar1')
 const verContra1 = document.getElementById('vizualizar2')
 const verContra2 = document.getElementById('vizualizar3')
@@ -18,25 +22,24 @@ verContra2.addEventListener('click', () => {
 })
 
 
-/*
-      async function cargarDatos() {
 
-      const datos = await usuario(1000002)
+async function cargarDatos() {
 
-      document.getElementById("nombre").value =
-            datos.nombre + " " +
-            datos.apPaterno + " " +
-            datos.apMaterno
+      const datos = await usuario()
+
+
+      document.getElementById("nombreTex").value =
+            datos.nombre_completo
 
       document.getElementById("correo").value =
             datos.email
 
       document.getElementById("numeroEmpleado").value =
-            datos.noUsuario
+            datos.no_usuario
 }
 
 cargarDatos()
-*/
+
 
 
 const boton = document.getElementById('updateBtn')
@@ -72,11 +75,32 @@ async function cambiarContraseña() {
                   contra.value = "";
                   nuevaContra.value = "";
                   confirmaContra.value = "";
-                  mostrarAlerta(data.message,"exito")
+                  mostrarAlerta(data.message, "exito")
             } else {
-                  mostrarAlerta(data.message,"error")
+                  mostrarAlerta(data.message, "error")
             }
       } catch {
             mostrarAlerta("Error con el servidor", "error")
       }
 }
+
+async function usuario() {
+      try {
+            const numUsuario = sessionStorage.getItem("nUsu")
+            const token = sessionStorage.getItem("token")
+            const respuesta = await fetch(`https://localhost:7293/api/Usuario/${numUsuario}`, {
+                  method: "GET",
+                  headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                  }
+            })
+            const datos = await respuesta.json()
+            return datos
+      }
+      catch {
+
+            mostrarAlerta("Error en el servidor","error")
+      }
+}
+

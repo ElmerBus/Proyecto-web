@@ -1,3 +1,6 @@
+if(sessionStorage.getItem("tipUsu")==="false"){
+      window.location.href="../HTMl/login.html"
+}
 const buscarNom = document.getElementById('buscarNombre');
 const buscarCod = document.getElementById('buscarCodigo');
 

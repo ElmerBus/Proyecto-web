@@ -1,3 +1,7 @@
+if(sessionStorage.getItem("tipUsu")==="true"){
+      window.location.href="../HTMl/login.html"
+}
+
 var totalcodigo = 0;
 var totalgeneral = 0;
 

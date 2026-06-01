@@ -1,6 +1,5 @@
-console.log(sessionStorage.getItem("tipUsu"))
 if(sessionStorage.getItem("tipUsu")==="true"){
-      window.location.href="../HTMl/Empleados.html"
+      window.location.href="../HTMl/login.html"
 }
 
 const fechaFin = document.getElementById('fechaFinal')

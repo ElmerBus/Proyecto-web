@@ -1,3 +1,7 @@
+if(sessionStorage.getItem("tipUsu")==="false"){
+      window.location.href="../HTMl/login.html"
+}
+
 var valortotal = 0;
 var valorGeneral = 0;
 
@@ -81,8 +85,8 @@ document.getElementById("btnBuscar").addEventListener("click", async function ()
             document.getElementById("txtNom").value = "";
             return;
         }
-        console.log("")
-        document.getElementById("txtNom").value = empleado.nombre + " " + empleado.apPaterno;
+        console.log(empleado.noUsuario,"esto")
+        document.getElementById("txtNom").value = empleado.nombre_completo + " " + empleado.apPaterno;
         document.getElementById("txtNom").readOnly = true;
         document.getElementById("txtCodigo").readOnly = false;
         document.getElementById("txtCodigo").placeholder = "Ingresa un código";
@@ -261,7 +265,7 @@ async function guardarRegistros() {
         return;
     }
 
-    const periodoId = 1; // hardcodeado por ahora
+    const periodoId = 2; // hardcodeado por ahora
     const token = sessionStorage.getItem('token');
     const tabla = document.getElementById("tablaRegistros");
     const filas = tabla.getElementsByTagName("tr");

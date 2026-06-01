@@ -34,6 +34,8 @@ function redirigirAlLogin() {
       sessionStorage.removeItem('token');
       window.location.href = "../HTML/login.html";
 }
+nombre()
+
 
 function mostrarAlerta(mensaje, tipo) {
 
@@ -114,34 +116,7 @@ function activarMenu() {
 
 }
 
-/*
-async function nombre() {
 
-      const nom = document.getElementById('nombre')
-
-      try {
-            const numUsuario = sessionStorage.getItem("nUsu")
-            const token = sessionStorage.getItem("token")
-            const respuesta = await fetch(`https://localhost:7293/api/Usuario/${numUsuario}`, {
-                  method: "GET",
-                  headers: {
-                        "Authorization": `Bearer ${token}`,
-                        "Content-Type": "application/json"
-                  }
-            })
-            const datos = await respuesta.json()
-            console.log(datos)
-            nom.textContent = `${datos.nombre} ${datos.ap_paterno}  ${datos.ap_materno}`
-      }
-
-
-      catch {
-
-            alert('error en la api')
-      }
-}
-
-*/
 const salir = document.getElementById('logout')
 const salir1 = document.getElementById('logout1')
 
@@ -170,5 +145,30 @@ async function logout() {
             }
       } catch {
             mostrarAlerta("Error con el servidor", "error")
+      }
+}
+
+async function nombre() {
+
+      const nom = document.getElementById('nombre')
+
+      try {
+            const numUsuario = sessionStorage.getItem("nUsu")
+            const token = sessionStorage.getItem("token")
+            const respuesta = await fetch(`https://localhost:7293/api/Usuario/${numUsuario}`, {
+                  method: "GET",
+                  headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                  }
+            })
+            const datos = await respuesta.json()
+            nom.textContent = `${datos.nombre_completo}`
+      }
+
+
+      catch {
+
+            mostrarAlerta("Error en el servidor", "error")
       }
 }

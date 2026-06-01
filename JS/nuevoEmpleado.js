@@ -1,3 +1,7 @@
+if(sessionStorage.getItem("tipUsu")==="false"){
+      window.location.href="../HTMl/login.html"
+}
+
 const btnReg = document.getElementById('btnRegistrar')
 const numUsuario = document.getElementById('numUsuario')
 const nombre = document.getElementById('nombre')

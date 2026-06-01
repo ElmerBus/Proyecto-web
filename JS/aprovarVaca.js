@@ -1,3 +1,6 @@
+if(sessionStorage.getItem("tipUsu")==="false"){
+      window.location.href="../HTMl/login.html"
+}
 const bodyTablaDinamica = document.getElementById('bodyTablaDinamica');
 const buscarNom = document.getElementById('buscarNombre');
 const filtroEstados = document.getElementById('filtroEstados');
@@ -85,7 +88,7 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
 
             if (respuesta.status == 200) {
                 actualizarTabla()
-                mostrarAlerta(`La solicitud fue ${e.target.value}, intentalo de nuevo`,"exito")
+                mostrarAlerta(`La solicitud fue ${e.target.value}`,"exito")
             }else{
                 mostrarAlerta("Error al procesar la informacion, intentalo de nuevo", "error")
             }
