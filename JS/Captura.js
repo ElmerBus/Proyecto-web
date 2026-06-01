@@ -97,10 +97,10 @@ document.getElementById("btnAgregar").addEventListener("click", function () {
         return;
     }
 
-    if (!codigoEsValido(codigo)) {
-        alert("Código inválido. Debe tener el formato LXXX o MXXX.");
-        return;
-    }
+    // if (!codigoEsValido(codigo)) {
+    //     alert("Código inválido. Debe tener el formato LXXX o MXXX.");
+    //     return;
+    // }
 
     if (codigoYaExiste(codigo)) {
         alert("El código " + codigo + " ya existe en la tabla.");
@@ -201,7 +201,7 @@ function obtenerNoUsuarioDelToken() {
 }
 
 async function guardarRegistros() {
-    const periodoId = 1;
+    const periodoId = 2;
     const noUsuario = obtenerNoUsuarioDelToken();
     const token = sessionStorage.getItem('token');
 
@@ -214,6 +214,7 @@ async function guardarRegistros() {
     lunes.setDate(hoy.getDate() - diffLunes);
 
     try {
+        
         for (let i = 1; i < filas.length; i++) {
             const fila = filas[i];
             if (fila.cells.length <= 8) continue;
@@ -234,8 +235,9 @@ async function guardarRegistros() {
                     periodoId: periodoId,
                     codigo: codigo
                 }
-
-                const respuesta = await fetch("https://localhost:7293/api/RegistroJornada", {
+                console.log(datos)
+                console.log(noUsuario)
+                const respuesta = await fetch(`https://localhost:7293/api/RegistroJornada`, {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${token}`,
@@ -243,18 +245,21 @@ async function guardarRegistros() {
                     },
                     body: JSON.stringify(datos)
                 })
-
+                
                 const resultado = await respuesta.json()
+                console.log(resultado)
                 if (!respuesta.ok) {
                     alert(resultado.message)
+                    
                     return
                 }
             }
         }
         alert("Registros guardados correctamente.")
-    } catch {
-        alert("ERROR CON LA API")
-    }
+    } catch (error) {
+    console.error(error);
+    alert("ERROR CON LA API");
+}
 }
 
 document.querySelector(".btnGuardar").addEventListener("click", guardarRegistros);

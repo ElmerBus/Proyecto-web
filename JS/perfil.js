@@ -57,7 +57,7 @@ async function cambiarContraseña() {
 
             }
 
-            const respuesta = await fetch(`/api/Usuario/${nuSu}/cambiar-contrasena`, {
+            const respuesta = await fetch(`https://localhost:7293/api/Usuario/${nuSu}/cambiar-contrasena`, {
 
                   method: "POST",
                   headers: {
@@ -72,11 +72,11 @@ async function cambiarContraseña() {
                   contra.value = "";
                   nuevaContra.value = "";
                   confirmaContra.value = "";
-                  alert(data.message)
+                  mostrarAlerta(data.message,"exito")
             } else {
-                  alert(data.message)
+                  mostrarAlerta(data.message,"error")
             }
       } catch {
-            console.log("Error en la api")
+            mostrarAlerta("Error con el servidor", "error")
       }
 }

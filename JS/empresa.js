@@ -7,7 +7,6 @@ let empresas
 
 
 
-
 async function actualizarTabla() {
       const nombreFiltrado = buscarNom.value.toLowerCase();
       const codigoFiltrado = buscarCod.value.toLowerCase();
@@ -94,14 +93,13 @@ async function nuevaEmpresa() {
       ) {
             let tipo = document.querySelector('input[name=cobro]:checked')
             const datos = {
-                  nombre: empresa.value,
+                  nombre: empresa.value.trim(),
                   tipoProyecto: tipo.value
             }
-            console.log(datos)
             try {
 
                   const token = sessionStorage.getItem('token')
-                  const respuesta = await fetch("/api/Empresa", {
+                  const respuesta = await fetch("https://localhost:7293/api/Empresa", {
                         method: "POST",
                         headers: {
                               "Authorization": `Bearer ${token}`,
@@ -109,13 +107,38 @@ async function nuevaEmpresa() {
                         },
                         body: JSON.stringify(datos)
                   })
-                  const resultado = await respuesta.json()
-                  actualizarTabla()
-                  alert(resultado.message)
+
+                  if (respuesta.status == 409) {
+                        const tipoPro = await fetch(`https://localhost:7293/api/Empresa/${id}`, {
+                              method: "GET",
+                              headers: {
+                                    "Authorization": `Bearer ${token}`,
+                                    "Content-Type": "application/json"
+                              }
+                        })
+                        const empresaExistente = await respuestaEmpresa.json();
+
+                        if (tipo === empresaExistente.tipoProyecto) {
+
+                              mostrarAlerta("Mostrar mensaje de asignar el codigo que falta", "error")
+                        } else {
+                              const tipoPro = await fetch(`https://localhost:7293/api/Empresa/update`, {
+                                    method: "POST",
+                                    headers: {
+                                          "Authorization": `Bearer ${token}`,
+                                          "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify(datos)
+                              })
+                              actualizarTabla()
+                        }
+                  } else {
+                        mostrarAlerta("Empresa registrada con exito", "exito")
+                        actualizarTabla()
+                  }
 
             } catch {
-
-                  alert("ERROR CON LA APIS")
+                  mostrarAlerta("Error con el servidor", "error")
             }
       }
 }
@@ -124,7 +147,7 @@ async function obtenEmpresas() {
 
       try {
             const token = sessionStorage.getItem('token')
-            const respuesta = await fetch("/api/Empresa", {
+            const respuesta = await fetch("https://localhost:7293/api/Empresa", {
 
                   method: "GET",
                   headers: {
@@ -137,7 +160,7 @@ async function obtenEmpresas() {
             return datos
 
       } catch {
-            console.log("ERROR CON LA APIS")
+            mostrarAlerta("Error con el servidor", "error")
       }
 
 }

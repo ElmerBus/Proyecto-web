@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', verificarToken);
 async function verificarToken() {
       try {
             const token = sessionStorage.getItem('token');
-            
-            
+
+
             if (!token) {
                   redirigirAlLogin();
                   return false;
@@ -20,20 +20,42 @@ async function verificarToken() {
             if (respuesta.status !== 200) {
                   redirigirAlLogin();
                   return false;
-            } 
-            
-            return true; 
+            }
+
+            return true;
       } catch {
-            redirigirAlLogin(); 
+            redirigirAlLogin();
       }
 }
 
 
 function redirigirAlLogin() {
       sessionStorage.removeItem('nUsu');
-      sessionStorage.removeItem('token'); 
+      sessionStorage.removeItem('token');
       window.location.href = "../HTML/login.html";
 }
+
+function mostrarAlerta(mensaje, tipo) {
+
+      let alerta = document.getElementById("alerta");
+
+      alerta.innerText = mensaje;
+
+      alerta.className = "alerta";
+
+      if (tipo == "exito") {
+            alerta.classList.add("exito");
+      } else {
+            alerta.classList.add("error");
+      }
+
+      alerta.style.display = "block";
+
+      setTimeout(function () {
+            alerta.style.display = "none";
+      }, 3000);
+}
+
 
 function verContrasena(campoPassword) {
       if (campoPassword.type === "password") {
@@ -120,16 +142,16 @@ async function nombre() {
 }
 
 */
-const salir=document.getElementById('logout')
-const salir1=document.getElementById('logout1')
+const salir = document.getElementById('logout')
+const salir1 = document.getElementById('logout1')
 
-salir1.addEventListener('click',logout)
-salir.addEventListener('click',logout)
+salir1.addEventListener('click', logout)
+salir.addEventListener('click', logout)
 
 async function logout() {
       try {
             const token = sessionStorage.getItem('token')
-            
+
             const respuesta = await fetch(`https://localhost:7293/api/LogIn/logout`, {
 
                   method: "POST",
@@ -142,11 +164,11 @@ async function logout() {
             if (respuesta.status == 200) {
                   sessionStorage.removeItem('token')
                   sessionStorage.removeItem('nUsu')
-                  window.location.href="../HTML/login.html"
+                  window.location.href = "../HTML/login.html"
             } else {
                   return false
             }
       } catch {
-            console.log("ERROR CON LA APasIS")
+            mostrarAlerta("Error con el servidor", "error")
       }
 }

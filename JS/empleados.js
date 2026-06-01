@@ -129,7 +129,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                         rowVersion: fila.dataset.rowversion
                     }
 
-                    const respuesta = await fetch(`/api/Usuario/${celdas[0].textContent}`, {
+                    const respuesta = await fetch(`https://localhost:7293/api/Usuario/${celdas[0].textContent}`, {
 
                         method: "POST",
                         headers: {
@@ -141,12 +141,12 @@ bodyTablaDinamica.addEventListener('click', (e) => {
 
                     if (respuesta.status == 204) {
                         actualizarTabla()
-                        alert("Usuario actualizado")
+                        mostrarAlerta("Usuario actualizado con exito", "exito")
                     } else {
-                        alert(respuesta.message)
+                        mostrarAlerta("Error al actualizar el usuario, intentalo de nuevo", "error")
                     }
                 } catch {
-                    console.log("ERROR CON LA APIS")
+                    mostrarAlerta("Error con el servidor", "error")
                 }
             }
         }
@@ -168,7 +168,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                     rowVersion: fila.dataset.rowversion
                 }
 
-                const respuesta = await fetch(`/api/Usuario/${numEmp}/desactivar`, {
+                const respuesta = await fetch(`https://localhost:7293/api/Usuario/${numEmp}/desactivar`, {
 
                     method: "POST",
                     headers: {
@@ -180,11 +180,13 @@ bodyTablaDinamica.addEventListener('click', (e) => {
 
                 if (respuesta.status == 204) {
                     actualizarTabla()
+                    mostrarAlerta("Usuario desactivado con exito", "exito")
                 } else {
-                    alert(respuesta.message)
+                    mostrarAlerta("Error al desactivar el usuario, intentalo de nuevo", "error")
                 }
             } catch {
-                console.log("ERROR CON LA APIS")
+                mostrarAlerta("Error con el servidor", "error")
+
             }
         }
     } else {
@@ -201,7 +203,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                         rowVersion: fila.dataset.rowversion
                     }
 
-                    const respuesta = await fetch(`/api/Usuario/${numEmp}/activar`, {
+                    const respuesta = await fetch(`https://localhost:7293/api/Usuario/${numEmp}/activar`, {
 
                         method: "POST",
                         headers: {
@@ -213,11 +215,12 @@ bodyTablaDinamica.addEventListener('click', (e) => {
 
                     if (respuesta.status == 204) {
                         actualizarTabla()
+                        mostrarAlerta("Usuario activado con exito", "exito")
                     } else {
-                        alert(respuesta.message)
+                        mostrarAlerta("Error al activar el usuario, intentalo de nuevo", "error")
                     }
                 } catch {
-                    console.log("ERROR CON LA APIS")
+                    mostrarAlerta("Error con el servidor", "error")
                 }
             }
         }
@@ -244,7 +247,7 @@ async function usuarios() {
 
     try {
         const token = sessionStorage.getItem('token')
-        const respuesta = await fetch("/api/Usuario", {
+        const respuesta = await fetch("https://localhost:7293/api/Usuario", {
 
             method: "GET",
             headers: {
@@ -257,7 +260,7 @@ async function usuarios() {
         return datos
 
     } catch {
-        console.log("ERROR CON LA APIS")
+        mostrarAlerta("Error con el servidor", "error")
     }
 
 }

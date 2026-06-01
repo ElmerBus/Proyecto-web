@@ -69,6 +69,6 @@ function validatePassword() {
 }
 
 function updatePassword() {
-      alert("Contraseña actualizada correctamente");
+      mostrarAlerta("Contraseña cambiada correctamente","exito")
       window.location.href = "login.html";
 }

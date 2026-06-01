@@ -71,7 +71,7 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
                 estadoDecision: e.target.value
             }
 
-            const respuesta = await fetch(`/api/Vacacion/${id}/evaluar`, {
+            const respuesta = await fetch(`https://localhost:7293/api/Vacacion/${id}/evaluar`, {
 
                 method: "POST",
                 headers: {
@@ -84,15 +84,16 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
 
             if (respuesta.status == 200) {
                 actualizarTabla()
+                mostrarAlerta(`La solicitud fue ${e.target.value}, intentalo de nuevo`,"exito")
             }else{
-                
+                mostrarAlerta("Error al procesar la informacion, intentalo de nuevo", "error")
             }
 
                 
 
             
         } catch {
-            console.log("ERROR CON LA APIS")
+            mostrarAlerta("Error con el servidor", "error")
         }
     }
 })
@@ -102,7 +103,7 @@ document.addEventListener('DOMContentLoaded', actualizarTabla);
 async function vacaciones() {
     try {
         const token = sessionStorage.getItem('token')
-        const respuesta = await fetch("/api/Vacacion", {
+        const respuesta = await fetch("https://localhost:7293/api/Vacacion", {
 
             method: "GET",
             headers: {
@@ -115,7 +116,7 @@ async function vacaciones() {
         return datos
 
     } catch {
-        console.log("ERROR CON LA APIS")
+        mostrarAlerta("Error con el servidor", "error")
     }
 }
 

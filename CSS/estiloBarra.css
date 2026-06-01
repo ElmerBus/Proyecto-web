@@ -69,7 +69,9 @@ body {
 }
 
 
-.botones:hover, .boton-limpiar:hover, #btnRegistrar:hover  {
+.botones:hover,
+.boton-limpiar:hover,
+#btnRegistrar:hover {
       text-decoration: underline;
       cursor: pointer;
       background-color: rgba(233, 233, 233, 0.858);
@@ -247,17 +249,22 @@ body {
       margin-bottom: 5px;
       font-size: 14px;
 }
+
 .campo2 label {
       margin-top: 5px;
       font-size: 14px;
 }
+
 .campo input,
 .campo2 input {
       padding: 8px;
       border: 1px solid gray;
 }
 
-.campo button.accion-estado,.campo button.accion-editar, .campo button.btnRegistrar, .campo button.btn_guardar  {
+.campo button.accion-estado,
+.campo button.accion-editar,
+.campo button.btnRegistrar,
+.campo button.btn_guardar {
       margin-top: 22px;
       padding: 10px 30px;
       background: white;
@@ -346,13 +353,34 @@ th {
 }
 
 input[type="number"] {
-    appearance: textfield;
-    -moz-appearance: textfield;
+      appearance: textfield;
+      -moz-appearance: textfield;
 }
+
+.alerta {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      padding: 15px;
+      border: 1px solid gray;
+      background-color: white;
+      display: none;
+      min-width: 250px;
+      z-index: 10000;
+}
+
+.alerta.exito {
+      border-left: 5px solid green;
+}
+
+.alerta.error {
+      border-left: 5px solid red;
+}
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+      -webkit-appearance: none;
+      margin: 0;
 }
 
 /*------------------------------------------------------*/

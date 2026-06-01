@@ -1,3 +1,23 @@
+function mostrarAlerta(mensaje, tipo) {
+
+      let alerta = document.getElementById("alerta");
+
+      alerta.innerText = mensaje;
+
+      alerta.className = "alerta";
+
+      if (tipo == "exito") {
+            alerta.classList.add("exito");
+      } else {
+            alerta.classList.add("error");
+      }
+
+      alerta.style.display = "block";
+
+      setTimeout(function () {
+            alerta.style.display = "none";
+      }, 3000);
+}
 function verContrasena(campoPassword) {
       if (campoPassword.type === "password") {
             campoPassword.placeholder = "Contraseña";
@@ -47,7 +67,7 @@ async function iniciarSesion() {
             }
 
             try {
-                  const respuesta = await fetch("/api/LogIn/login", {
+                  const respuesta = await fetch("https://localhost:7293/api/LogIn/login", {
                         method: "POST",
                         headers: {
                               "Content-Type": "application/json"
@@ -57,7 +77,7 @@ async function iniciarSesion() {
 
 
                   const resultado = await respuesta.json()
-                  console.log(resultado)
+      
                   if (respuesta.ok) {
 
                         sessionStorage.setItem("token", resultado.user.token)
@@ -67,19 +87,19 @@ async function iniciarSesion() {
                         if (resultado.user.esManager) {
                               
                               window.location.href = "../HTML/Empleados.html";
-                              console.log(resultado.message)
+
                         } else {
                               window.location.href = "../HTML/Captura.html";
-                              console.log(resultado.message)
+
                         }
 
                   } else {
 
-                        alert(resultado.message)
+                        mostrarAlerta(resultado.message,"error")
                   }
 
             } catch {
-                  alert("Erro con la api")
+                  mostrarAlerta("Error con el servidor", "error")
             }
       }
 }

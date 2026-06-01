@@ -28,14 +28,16 @@ async function solicitar() {
                         },
                         body: JSON.stringify(datos)
                   })
+                  
                   const data = await respuesta.json();
-
                   if (respuesta.ok) {
-                        alert("Se envio la solicitud");
+                        mostrarAlerta("Solicitud enviada","exito")
+                  }else{
+                        mostrarAlerta(data.message,"error")
                   }
 
             } catch {
-                  alert("Error con la api")
+                  mostrarAlerta("Error con el servidor", "error")
             }
       }
 }

@@ -30,7 +30,7 @@ async function nuevoUsuario() {
             }
             try {
                   const token = sessionStorage.getItem('token')
-                  const respuesta = await fetch("/api/Usuario", {
+                  const respuesta = await fetch("https://localhost:7293/api/Usuario", {
                         method: "POST",
                         headers: {
                               "Authorization": `Bearer ${token}`,
@@ -42,16 +42,16 @@ async function nuevoUsuario() {
 
                   if (respuesta.status ==201 ){
                         limpiar()
-                        alert(data.message)
+                        mostrarAlerta(data.message,"exito")
                         
                   } else {
-                        alert(data.message)
+                        mostrarAlerta(data.message,"error")
                         
                   }
 
             } catch {
 
-                  alert("Error con la api")
+                  mostrarAlerta("Error con el servidor", "error")
             }
       }
 

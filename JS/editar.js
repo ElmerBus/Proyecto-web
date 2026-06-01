@@ -81,7 +81,7 @@ document.getElementById("btnBuscar").addEventListener("click", async function ()
             document.getElementById("txtNom").value = "";
             return;
         }
-
+        console.log("")
         document.getElementById("txtNom").value = empleado.nombre + " " + empleado.apPaterno;
         document.getElementById("txtNom").readOnly = true;
         document.getElementById("txtCodigo").readOnly = false;

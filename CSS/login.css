@@ -4,9 +4,11 @@
             box-sizing: border-box;
             font-family: 'DM Sans', sans-serif;
       }
-      #link:hover{
+
+      #link:hover {
             cursor: pointer;
       }
+
       body {
             font-family: 'DM Sans', sans-serif;
             background-color: #A550BB;
@@ -97,4 +99,24 @@
 
       .btn-login:hover {
             background-color: #5b136d
+      }
+
+      .alerta {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            padding: 15px;
+            border: 1px solid gray;
+            background-color: white;
+            display: none;
+            min-width: 250px;
+            z-index: 10000;
+      }
+
+      .alerta.exito {
+            border-left: 5px solid green;
+      }
+
+      .alerta.error {
+            border-left: 5px solid red;
       }
