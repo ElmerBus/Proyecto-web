@@ -101,7 +101,7 @@ async function nuevaEmpresa() {
             try {
 
                   const token = sessionStorage.getItem('token')
-                  const respuesta = await fetch("https://localhost:7293/api/Empresa", {
+                  const respuesta = await fetch("/api/Empresa", {
                         method: "POST",
                         headers: {
                               "Authorization": `Bearer ${token}`,
@@ -124,7 +124,7 @@ async function obtenEmpresas() {
 
       try {
             const token = sessionStorage.getItem('token')
-            const respuesta = await fetch("https://localhost:7293/api/Empresa", {
+            const respuesta = await fetch("/api/Empresa", {
 
                   method: "GET",
                   headers: {

@@ -1,0 +1,243 @@
+/* --- Selector de semana --- */
+.semanas {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+ 
+.semana {
+    width: 30%;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+}
+ 
+.btnSemanas {
+    width: 100%;
+    height: 20px;
+    background-color: white;
+    border: 1px solid black;
+}
+ 
+.fecha {
+    margin-top: 5px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+ 
+/* --- Sección editar (buscar empleado + código) --- */
+.divisor-editar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+ 
+.captura-empleado,
+.informacion-empleado,
+.capturaCodigo {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+ 
+.campo2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    justify-content: space-around;
+    align-items: center;
+}
+ 
+#txtNumReloj {
+    width: 70%;
+    height: 30px;
+    border: 1px solid black;
+}
+ 
+#btnBuscar {
+    width: 15%;
+    height: 30px;
+    background-color: white;
+    border: 1px solid black;
+}
+ 
+#txtNom {
+    width: 80%;
+    height: 30px;
+    border: 1px solid black;
+}
+ 
+#txtCodigo {
+    width: 50%;
+    height: 30px;
+    border: 1px solid black;
+}
+ 
+#btnAgregar {
+    width: 20%;
+    height: 30px;
+    background-color: white;
+    border: 1px solid black;
+}
+ 
+/* --- Totales e información --- */
+.divRegistro {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+ 
+.divHoras {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    height: 100px;
+    background-color: white;
+    border: 1px solid black;
+    align-items: center;
+    text-align: center;
+}
+ 
+.divInformacion {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100px;
+    background-color: white;
+    border: 1px solid black;
+    align-items: center;
+}
+ 
+.btnGuardar {
+    width: 15%;
+    height: 100px;
+    background-color: white;
+    border: 1px solid black;
+}
+ 
+@media only screen and (max-width: 1024px) {
+ 
+    /* Semanas */
+    .semanas {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+ 
+    .semana {
+        width: 80%;
+        margin-top: 10px;
+    }
+ 
+    .btnSemanas {
+        width: 100%;
+        font-size: 10px;
+    }
+ 
+    .fecha {
+        margin-top: 80px;
+        font-size: 12px;
+    }
+ 
+    /* Editar: contenedor principal */
+    .divisor-editar {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+ 
+    /* Cada sección ocupa su propio espacio */
+    .captura-empleado,
+    .informacion-empleado,
+    .capturaCodigo {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
+ 
+    /* Cada campo: label arriba, input abajo */
+    .campo2 {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        gap: 6px;
+        padding: 0 10px;
+    }
+ 
+    .campo2 label {
+        font-size: 12px;
+        font-weight: bold;
+    }
+ 
+    /* Inputs y botones a ancho completo */
+    #txtNumReloj {
+        width: 100%;
+        height: 32px;
+        font-size: 12px;
+        box-sizing: border-box;
+    }
+ 
+    #btnBuscar {
+        width: 100%;
+        height: 32px;
+        font-size: 12px;
+    }
+ 
+    #txtNom {
+        width: 100%;
+        height: 32px;
+        font-size: 12px;
+        box-sizing: border-box;
+        margin-top: 0;
+    }
+ 
+    #txtCodigo {
+        width: 100%;
+        height: 32px;
+        font-size: 12px;
+        box-sizing: border-box;
+    }
+ 
+    #btnAgregar {
+        width: 100%;
+        height: 32px;
+        font-size: 12px;
+        margin-top: 0;
+    }
+ 
+    /* Totales */
+    .divRegistro {
+        flex-direction: column;
+        align-items: center;
+    }
+ 
+    .divHoras {
+        width: 80%;
+        height: 50px;
+    }
+ 
+    .divInformacion {
+        margin-top: 5px;
+        width: 100%;
+        height: auto;
+        min-height: 100px;
+        text-align: center;
+    }
+ 
+    .btnGuardar {
+        margin-top: 5px;
+        width: 80%;
+        height: 30px;
+    }
+}

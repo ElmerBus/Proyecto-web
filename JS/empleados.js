@@ -129,7 +129,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                         rowVersion: fila.dataset.rowversion
                     }
 
-                    const respuesta = await fetch(`https://localhost:7293/api/Usuario/${celdas[0].textContent}`, {
+                    const respuesta = await fetch(`/api/Usuario/${celdas[0].textContent}`, {
 
                         method: "POST",
                         headers: {
@@ -168,7 +168,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                     rowVersion: fila.dataset.rowversion
                 }
 
-                const respuesta = await fetch(`https://localhost:7293/api/Usuario/${numEmp}/desactivar`, {
+                const respuesta = await fetch(`/api/Usuario/${numEmp}/desactivar`, {
 
                     method: "POST",
                     headers: {
@@ -201,7 +201,7 @@ bodyTablaDinamica.addEventListener('click', (e) => {
                         rowVersion: fila.dataset.rowversion
                     }
 
-                    const respuesta = await fetch(`https://localhost:7293/api/Usuario/${numEmp}/activar`, {
+                    const respuesta = await fetch(`/api/Usuario/${numEmp}/activar`, {
 
                         method: "POST",
                         headers: {
@@ -244,7 +244,7 @@ async function usuarios() {
 
     try {
         const token = sessionStorage.getItem('token')
-        const respuesta = await fetch("https://localhost:7293/api/Usuario", {
+        const respuesta = await fetch("/api/Usuario", {
 
             method: "GET",
             headers: {

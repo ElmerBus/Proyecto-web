@@ -1,13 +1,14 @@
 const fechaFin = document.getElementById('fechaFinal')
 const fechaIni = document.getElementById('fechaInicio')
 const enviar = document.getElementById('enviar')
-console.log(enviar)
+
 enviar.addEventListener('click', solicitar)
 
 async function solicitar() {
       if (
-            validarCampo(fechaFin) &&
-            validarCampo(fechaIni)
+            validarCampo(fechaIni) &&
+            validarCampo(fechaFin) 
+            
       ) {
             const token = sessionStorage.getItem('token')
             const nuSu = sessionStorage.getItem('nUsu')

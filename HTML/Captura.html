@@ -1,3 +1,4 @@
+<!--Prubea push-->
 <!doctype html>
 <html lang="es">
 
@@ -11,8 +12,6 @@
       <link rel="stylesheet" href="../CSS/estiloBarra.css">
       <link rel="stylesheet" href="../CSS/Captura.css">
 
-
-
 </head>
 
 <body>
@@ -24,7 +23,7 @@
                   </div>
 
                   <button class="boton1" id="btnMenu">
-                        <h1>☰ Empleado</h1>
+                        ☰ Empleado
                   </button>
 
                   <div class="grupo">
@@ -88,36 +87,33 @@
                         <div class="formDes">
                               Semana
                         </div>
-                        <div class="semanas">
-                              <div class="semana"><button class="btnSemanas">🡸 Semana pasada</button></div>
-                              <div class="semana"><button class="btnSemanas">⌛ Semana actual</button></div>
-                              <div class="semana"><button class="btnSemanas">Semana siguiente 🡺</button></div>
-                        </div>
                         <div class="fecha">
-                              <p>La actual semana es de [fecha inicio] a [fecha fin]</p>
+                              <p id="fechaSemana">La actual semana es de [fecha inicio] a [fecha fin]</p>
                         </div>
-                        <div class="divisor1">
+                        <div class="divisor-captura">
                               <div class="formDes">
                                     Nueva captura
                               </div>
-                              <div class="capturaCodigo">
+                              <div class="captura-codigo">
                                     <div class="campo2">
                                           <label>Codigo:</label>
-                                          <input id="txtCodigo" , class="Inputs" ,type="text" ,
+                                          <input id="txtCodigo" class="Inputs" type="text"
                                                 placeholder="Ingresa código ej: L/M123">
 
+                                          <button type="button" class="Inputs" , id="btnAgregar">
+                                                Añadir
+                                                registro
+                                          </button>
                                     </div>
-                                    <button class="Inputs" , id="btnAgregar">
-                                          Añadir
-                                          registro</button>
-
                               </div>
                         </div>
 
-                        <h4>Registros ingresados</h4>
+                        <div class="formDes", id="registrosSemana">
+                              Registros de la semana
+                        </div>
                         <div class="contenido-tabla">
 
-                              <table>
+                              <table id="tablaRegistros">
                                     <thead>
                                           <tr id="filaEncabezado">
                                                 <th>Codigo</th>

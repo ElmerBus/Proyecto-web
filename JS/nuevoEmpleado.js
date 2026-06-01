@@ -30,7 +30,7 @@ async function nuevoUsuario() {
             }
             try {
                   const token = sessionStorage.getItem('token')
-                  const respuesta = await fetch("https://localhost:7293/api/Usuario", {
+                  const respuesta = await fetch("/api/Usuario", {
                         method: "POST",
                         headers: {
                               "Authorization": `Bearer ${token}`,
