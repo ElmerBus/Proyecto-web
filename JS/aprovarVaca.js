@@ -70,7 +70,8 @@ bodyTablaDinamica.addEventListener('change', async (e) => {
             const datos = {
                 estadoDecision: e.target.value
             }
-
+            console.log(datos)
+            console.log(id)
             const respuesta = await fetch(`https://localhost:7293/api/Vacacion/${id}/evaluar`, {
 
                 method: "POST",

@@ -1,3 +1,8 @@
+console.log(sessionStorage.getItem("tipUsu"))
+if(sessionStorage.getItem("tipUsu")==="true"){
+      window.location.href="../HTMl/Empleados.html"
+}
+
 const fechaFin = document.getElementById('fechaFinal')
 const fechaIni = document.getElementById('fechaInicio')
 const enviar = document.getElementById('enviar')
@@ -18,6 +23,7 @@ async function solicitar() {
                   fechaFin: fechaFin.value,
                   solicitanteId: nuSu
             }
+            
             try {
                   const respuesta = await fetch(`https://localhost:7293/api/Vacacion`, {
 
